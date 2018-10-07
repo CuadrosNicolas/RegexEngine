@@ -21,14 +21,19 @@ This library allows to use basic regex syntax :
 	- \d \D for number and non number
 	- \w \W for whitespace and non whitespace
 
+- Anchor :
+	- ^ $ : begin and end of string
+	- \b \B word boundaries and non word boundaries
+
 # ToDos
 
 - [x] Caracter support
 - [x] Quantifier support
 - [x] Set support
 - [x] Special caracter support
-- [ ] Anchor support
+- [x] Anchor support
 - [ ] Class for managing match and sub-match
 - [ ] Separate Engine in two class, one for building regex, and one for containing them
 - [ ] Group/non capturing group and Or '|'
 - [ ] positive and negative lookahead
+- [ ] Flags managment

@@ -25,6 +25,12 @@ EngineState* BuildState::parse(char c)
 	case '{':
 		return new CounterState(parentEngine);
 	break;
+	case '^':
+		addNode(new AnchorBeginNode());
+	break;
+	case '$':
+		addNode(new AnchorEndNode());
+	break;
 	case '.':
 		temp = new DotNode();
 		parentEngine->getPrevious()->link(temp);

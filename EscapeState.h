@@ -10,5 +10,4 @@ class EscapeState : public EngineState
 	EngineState *parse(char c);
 	protected:
 	void addChar(char c);
-	void addNode(NodeI* node);
 };

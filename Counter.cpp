@@ -52,7 +52,7 @@ StringIterator Counter::count(StringIterator it, int actual)
 {
 	StringIterator temp=it;
 
-		if (intern_test(it, actual)&&(temp = count(it + 1, actual + 1)).isValid())
+		if (it.end()==false && intern_test(it, actual)&&(temp = count(it + 1, actual + 1)).isValid())
 			return temp;
 		else
 			return intern_in(it, actual);

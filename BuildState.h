@@ -5,6 +5,7 @@
 #include "CounterState.h"
 #include "AssemblyNode.h"
 #include "CharNode.h"
+#include "AnchorNode.h"
 class BuildState : public EngineState
 {
   public:

@@ -44,11 +44,17 @@ char StringIterator::get()
 }
 bool StringIterator::end()
 {
-	return pos>=source->size();
+	return pos<0 ||pos>=source->size();
 }
 std::string StringIterator::getValue()
 {
 	return value;
+}
+StringIterator operator-(const StringIterator &it, int i)
+{
+	StringIterator temp(it);
+	temp.pos = it.pos - i;
+	return temp;
 }
 StringIterator operator+(const StringIterator& it,int i)
 {

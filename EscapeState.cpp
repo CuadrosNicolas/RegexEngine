@@ -2,12 +2,6 @@
 EscapeState::EscapeState(Engine *e) : EngineState(e)
 {
 }
-void EscapeState::addNode(NodeI *node)
-{
-	parentEngine->getPrevious()->link(node);
-	node->setPred(parentEngine->getPrevious());
-	parentEngine->setPrevious(node);
-}
 void EscapeState::addChar(char c)
 {
 	CharNode *temp = new CharNode(c);
@@ -44,6 +38,12 @@ EngineState *EscapeState::parse(char c)
 	case 'S':
 		addNode(new NotWhiteSpaceNode());
 		break;
+	case 'b':
+		addNode(new AnchorWordBoundariesNode());
+	break;
+	case 'B':
+		addNode(new AnchorNotWordBoundariesNode());
+	break;
 	default:
 		addChar(c);
 		break;

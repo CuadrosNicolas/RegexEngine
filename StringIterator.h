@@ -19,5 +19,7 @@ class StringIterator
 private:
 	std::string value;
 	bool valid;
+
 };
+StringIterator operator-(const StringIterator &it, int i);
 StringIterator operator+(const StringIterator& it,int i);

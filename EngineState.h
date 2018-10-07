@@ -19,6 +19,7 @@ class EngineState
 		 * @param c Character to parse
 		 * @return EngineState* Next state of the engine
 		 */
+		void addNode(NodeI* node);
 	  virtual EngineState *parse(char c);
 	protected:
 		Engine* parentEngine;

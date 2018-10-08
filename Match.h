@@ -18,6 +18,7 @@ class Match
 		std::string getValue();
 		size_t getBegin();
 		size_t getEnd();
+		std::vector<Match*> getChild();
 		void setValue(std::string* source);
 	private:
 	  std::string getPrint(int actual);

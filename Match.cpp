@@ -67,6 +67,10 @@ Match* Match::getParent()
 	else
 	return this;
 }
+std::vector<Match*> Match::getChild()
+{
+	return childs;
+}
 Match* Match::addChild()
 {
 	if(parent!=nullptr)

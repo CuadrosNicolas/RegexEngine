@@ -20,6 +20,7 @@ class Match
 		size_t getEnd();
 		std::vector<Match*> getChild();
 		void setValue(std::string* source);
+		void popLast();
 	private:
 	  std::string getPrint(int actual);
 	  size_t begin;

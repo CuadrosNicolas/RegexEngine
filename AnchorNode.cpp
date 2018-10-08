@@ -67,7 +67,7 @@ StringIterator AnchorWordBoundariesNode::in(StringIterator it)
 		{
 			if(rightBoundaries(it-1))
 			{
-				return next->in(it);
+				return next->in(it+1);
 			}
 		}
 	}
@@ -75,7 +75,7 @@ StringIterator AnchorWordBoundariesNode::in(StringIterator it)
 	{
 		if (rightBoundaries(it - 1))
 		{
-			return next->in(it);
+			return next->in(it+1);
 		}
 	}
 	return it;

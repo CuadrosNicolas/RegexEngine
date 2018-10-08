@@ -16,23 +16,14 @@ bool Lazy::test(char c)
 StringIterator Lazy::count(StringIterator it, int actual)
 {
 	StringIterator temp;
-	bool temp_count;
-	if (!it.end())
+	temp = internNode->intern_in(it, actual);
+	if (temp.isValid())
+		return temp;
+	else if (internNode->intern_test(it, actual))
 	{
-		temp = internNode->intern_in(it, actual);
-		if (temp.isValid())
-			return temp;
-		else
-		{
-			temp_count = internNode->intern_test(it, actual);
-			if (temp_count)
-				return count(it + 1, actual + 1);
-		}
+		return count(it + 1, actual + 1);
 	}
-	else
-	{
-		return it;
-	}
+
 	return it;
 }
 NodeI *Lazy::getPred()

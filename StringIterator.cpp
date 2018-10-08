@@ -73,6 +73,10 @@ bool StringIterator::end()
 {
 	return pos<0 ||pos>=source->size();
 }
+void StringIterator::clean()
+{
+	outMatchs->popLast();
+}
 Match* StringIterator::getMatch()
 {
 	return outMatchs;

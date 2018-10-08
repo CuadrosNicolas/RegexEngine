@@ -1,23 +1,31 @@
 #include <iostream>
 #include "Regex.h"
-using namespace std;
-
-int main(int argc,char* argv[])
+int countMatch(Match* matchs)
 {
-	if(argc>=2)
+	//Initialize the counter
+	int counter = 0;
+	//We don't count the first match because it's the root of all matches.
+	//Count all the sub match
+	for (Match *m : matchs->getChild())
 	{
-		//string temp_s = argv[1];
-		string temp_s = ".*? ";
-		Regex temp(temp_s);
-		string test("AAA AAA AAA ");
-		Match matchs = temp.matchString(test);
-		cout << matchs.getPrint() << endl;
-
+		counter+= countMatch(m);
+		counter++;
 	}
-	else
-	{
-		cout << "ERROR : Not enought arguments." << endl;
-	}
-	cin.get();
+	return counter;
+}
+int main(int argc, char *argv[])
+{
+	//Build the regex with a pattern to extract word
+	//Here is an example with a pattern matching any word beginning with 'w'
+	Regex temp("\\b.+?\\b");
+	//Create a string to match
+	std::string test("wall wire whole");
+	//Try to match the pattern with the string
+	Match matchs = temp.matchString(test);
+	//Print the matches
+	std::cout << matchs.getPrint() << std::endl;
+	int counter = countMatch(&matchs);
+	std::cout << "Number of matches : " << counter << std::endl;
+	std::cin.get();
 	return 0;
 }

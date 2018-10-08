@@ -18,7 +18,7 @@ class StringIterator
 	std::string *source;
 	size_t pos;
 	int lastPos;
-
+	void clean();
 	Match* getMatch();
 	friend StringIterator operator-(const StringIterator &it, int i);
 	friend StringIterator operator+(const StringIterator& it,int i);

@@ -42,9 +42,9 @@ void Match::setBegin(size_t i)
 }
 void Match::setEnd(size_t i)
 {
-	end = i;
 	if(parent!=nullptr)
 	{
+		end = i;
 		parent->setEnd(i);
 	}
 }
@@ -91,6 +91,10 @@ Match* Match::push()
 	Match* temp = new Match(this);
 	childs.push_back(temp);
 	return temp;
+}
+void Match::popLast()
+{
+	childs.pop_back();
 }
 std::string Match::getPrint()
 {

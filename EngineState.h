@@ -13,6 +13,7 @@ class EngineState
 		 * @param e parent engine
 		 */
 		EngineState(Engine *e);
+		virtual ~EngineState();
 		/**
 		 * @brief
 		 *	Parse a caracter to identify which action to do on the parent engine

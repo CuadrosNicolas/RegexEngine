@@ -33,7 +33,7 @@ This library allows to use basic regex syntax :
 - [x] Special caracter support
 - [x] Anchor support
 - [x] Class for managing match and sub-match
-- [ ] Separate Engine in two class, one for building regex, and one for containing them
+- [x] Separate Engine in two class, one for building regex, and one for containing them
 - [ ] Group/non capturing group and Or '|'
 - [ ] positive and negative lookahead
 - [ ] Flags managment

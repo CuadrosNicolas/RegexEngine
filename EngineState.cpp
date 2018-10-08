@@ -1,5 +1,9 @@
 #include "EngineState.h"
 EngineState::EngineState(Engine *e) { parentEngine = e; };
+EngineState::~EngineState()
+{
+
+}
 EngineState* EngineState::parse(char c)
 {
 	return this;

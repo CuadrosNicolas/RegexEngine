@@ -1,11 +1,14 @@
 #pragma once
 #include <string>
+#include "Match.h"
 class StringIterator
 {
   public:
 	StringIterator();
 	StringIterator(std::string *s);
 	StringIterator(const StringIterator& s);
+	StringIterator operator=(const StringIterator& it);
+	void init();
 	char get();
 	bool end();
 	StringIterator validPos();
@@ -16,10 +19,14 @@ class StringIterator
 	size_t pos;
 	int lastPos;
 
+	Match* getMatch();
+	friend StringIterator operator-(const StringIterator &it, int i);
+	friend StringIterator operator+(const StringIterator& it,int i);
+
 private:
+	Match* matchs;
+	Match* outMatchs;
 	std::string value;
 	bool valid;
 
 };
-StringIterator operator-(const StringIterator &it, int i);
-StringIterator operator+(const StringIterator& it,int i);

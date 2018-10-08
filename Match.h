@@ -5,6 +5,8 @@ class Match
 {
 	public:
 		Match();
+		Match(const Match& m);
+		Match(const Match* m);
 		Match(Match* par);
 		~Match();
 		Match* getParent();
@@ -12,11 +14,17 @@ class Match
 		Match* push();
 		void setEnd(size_t i);
 		void setBegin(size_t i);
+		std::string getPrint();
+		std::string getValue();
+		size_t getBegin();
+		size_t getEnd();
+		void setValue(std::string* source);
 	private:
-		size_t begin;
-		size_t end;
-		std::string value;
-		Match* parent;
-		std::vector<Match*> childs;
+	  std::string getPrint(int actual);
+	  size_t begin;
+	  size_t end;
+	  std::string value;
+	  Match *parent;
+	  std::vector<Match *> childs;
 
 };

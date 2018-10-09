@@ -1,6 +1,6 @@
 #pragma once
 #include "Counter.h"
-class Lazy : public NodeI
+class Lazy : public DecoratorNode
 {
 	public:
 		Lazy(Counter* node);

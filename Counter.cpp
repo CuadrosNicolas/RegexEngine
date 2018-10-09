@@ -12,6 +12,20 @@ Counter::Counter(NodeI *node, int minimum, int maximum)
 	internNode = node;
 	node->getPred()->setNext(this);
 }
+Counter::Counter(GroupEndNode *node)
+{
+	internNode = node->getPred();
+	node->getPred()->getPred()->link(this);
+	setNext(node);
+}
+Counter::Counter(GroupEndNode *node, int minimum, int maximum)
+{
+	min = minimum;
+	max = maximum;
+	internNode = node->getPred();
+	node->getPred()->getPred()->setNext(this);
+	setNext(node);
+}
 void Counter::setMin(int i)
 {
 	min = i;

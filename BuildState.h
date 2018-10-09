@@ -6,6 +6,7 @@
 #include "AssemblyNode.h"
 #include "CharNode.h"
 #include "AnchorNode.h"
+#include "GroupEndNode.h"
 class BuildState : public EngineState
 {
   public:

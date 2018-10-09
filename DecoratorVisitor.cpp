@@ -11,3 +11,8 @@ NodeI *DecoratorVisitor::visit(Counter *node)
 {
 	return new Lazy(node);
 }
+NodeI *DecoratorVisitor::visit(GroupEndNode* node)
+{
+	//Counter::interrogation(node);
+	return node;
+}

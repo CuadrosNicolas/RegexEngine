@@ -1,7 +1,8 @@
 #pragma once
-#include "BeginNode.h"
+#include "GroupBeginNode.h"
 #include "EndNode.h"
 #include "DecoratorVisitor.h"
+#include <stack>
 class EngineState;
 class Engine
 {
@@ -10,6 +11,8 @@ class Engine
 		NodeI* getPrevious();
 		void setPrevious(NodeI* node);
 		DecoratorVisitor* getDecorator();
+		std::stack<NodeI*>& getStack();
+		std::vector<NodeI*>& getTerminal();
 	protected:
 		NodeI* build(std::string s);
 		Engine();
@@ -17,7 +20,9 @@ class Engine
 		DecoratorVisitor Decorator;
 	private:
 		static Engine* globalEngine;
-		BeginNode* RegTree;
+		GroupBeginNode* RegTree;
 		std::string Reg;
 		EngineState* State;
+		std::stack<NodeI*> groupStack;
+		std::vector<NodeI*> terminalNode;
 };

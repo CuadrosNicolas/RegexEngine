@@ -92,6 +92,13 @@ Match* Match::push()
 	childs.push_back(temp);
 	return temp;
 }
+Match *Match::push(int pos)
+{
+	Match *temp = new Match(this);
+	childs.push_back(temp);
+	temp->begin = pos;
+	return temp;
+}
 void Match::popLast()
 {
 	childs.pop_back();

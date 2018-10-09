@@ -1,6 +1,6 @@
 # Introduction
 
-This projet aims to build a small library to construct and exploit Regex.
+This projet aims to make a small library to build and exploit Regex.
 
 # Features
 
@@ -14,7 +14,7 @@ This library allows to use basic regex syntax :
 	- \+
 	- a{0,5}
 	- Lazy quantifier using '?' after any others quantifiers
-- Special caracter :
+- Special character :
 	- . everything except \n and \r
 	- \t \n \r
 	- \b \B for word and non word
@@ -24,10 +24,12 @@ This library allows to use basic regex syntax :
 - Anchor :
 	- ^ $ : begin and end of string
 	- \b \B word boundaries and non word boundaries
+- Group :
+	- Capture group using ('sub regex') , group does not support quantifiers (at this moment)
 
 # Usage
 
-In order to build and try to match a regex you have to :
+In order to build and try to match a regex, please refer to the following steps :
 
 1. Import the header
 ```C++
@@ -51,9 +53,9 @@ In order to build and try to match a regex you have to :
 	std::cout << "Number of matches : " << counter << std::endl;
 ```
 
-If you want to get a string representing the match, you can use the getPrint() method.
+If you want to get a string representing the match, use the getPrint() method.
 
-In order to iterate through a match you can follow this example which build a function to count the number of matches countain in the result of a regex.
+In order to iterate through a match, follow this example which build a function to count the number of matches countain in the result of a regex.
 ```C++
 int countMatch(Match* matchs)
 {
@@ -72,13 +74,16 @@ int countMatch(Match* matchs)
 
 # ToDos
 
-- [x] Caracter support
+- [x] character support
 - [x] Quantifier support
 - [x] Set support
-- [x] Special caracter support
+- [x] Special character support
 - [x] Anchor support
 - [x] Class for managing match and sub-match
 - [x] Separate Engine in two class, one for building regex, and one for containing them
-- [ ] Group/non capturing group and Or '|'
-- [ ] positive and negative lookahead
+- [x] Capturing group
+- [ ] Adding quantifiers support for group
+- [ ] Or '|'
 - [ ] Flags managment
+- [ ] non capturing group
+- [ ] positive and negative lookahead

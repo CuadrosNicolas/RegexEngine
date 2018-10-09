@@ -16,10 +16,13 @@ Engine::Engine()
 NodeI* Engine::build(std::string s)
 {
 	State = new BuildState(this);
-	RegTree = new BeginNode();
+	RegTree = new GroupBeginNode();
 	previous = this->RegTree;
 	Reg = s;
 	EngineState* temp = nullptr;
+	groupStack = std::stack<NodeI*>();
+	terminalNode.clear();
+	groupStack.push(RegTree);
 	for(char c : Reg)
 	{
 		temp = State->parse(c);
@@ -44,4 +47,14 @@ void Engine::setPrevious(NodeI* node)
 DecoratorVisitor *Engine::getDecorator()
 {
 	return &Decorator;
+}
+
+std::stack<NodeI*>& Engine::getStack()
+{
+	return groupStack;
+}
+
+std::vector<NodeI*>& Engine::getTerminal()
+{
+	return terminalNode;
 }

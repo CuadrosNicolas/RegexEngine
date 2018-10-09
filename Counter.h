@@ -1,12 +1,14 @@
 #pragma once
 #include "DecoratorNode.h"
-
+#include "GroupEndNode.h"
 class Counter : public DecoratorNode
 {
 	public:
 	  Counter(NodeI *node);
 	  Counter(NodeI *node, int minimum, int maximum);
-	  bool test(char c);
+		Counter(GroupEndNode *node);
+		Counter(GroupEndNode *node, int minimum, int maximum);
+		bool test(char c);
 	  void setMin(int i);
 	  void setMax(int i);
 	  StringIterator count(StringIterator it, int actual);

@@ -20,6 +20,9 @@ class StringIterator
 	int lastPos;
 	void clean();
 	Match* getMatch();
+	Match* addChild();
+	Match* push();
+	void backMatch();
 	friend StringIterator operator-(const StringIterator &it, int i);
 	friend StringIterator operator+(const StringIterator& it,int i);
 

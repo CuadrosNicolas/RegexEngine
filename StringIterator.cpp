@@ -30,7 +30,7 @@ StringIterator::StringIterator(const StringIterator& it)
 }
 void StringIterator::init()
 {
-	matchs = outMatchs->addChild();
+	//matchs = outMatchs->addChild();
 }
 StringIterator StringIterator::operator=(const StringIterator& it)
 {
@@ -84,6 +84,19 @@ Match* StringIterator::getMatch()
 std::string StringIterator::getValue()
 {
 	return value;
+}
+Match* StringIterator::addChild()
+{
+	return matchs = matchs->addChild();
+}
+void StringIterator::backMatch()
+{
+	if(matchs->getParent()!=nullptr)
+		matchs = matchs->getParent();
+}
+Match* StringIterator::push()
+{
+	return matchs = matchs->push(pos);
 }
 StringIterator operator-(const StringIterator &it, int i)
 {

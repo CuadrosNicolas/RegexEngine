@@ -9,7 +9,7 @@ Match Regex::matchString(std::string s)
 	StringIterator it(&s);
 	it.init();
 	while (it.end() == false)
-	{
+	{ 
 		it = regTree->in(it);
 		if (!it.isValid())
 		{

@@ -36,7 +36,7 @@ void NodeI::setNext(NodeI *n)
 	next = n;
 }
 
-NodeI* NodeI::accept(DecoratorVisitor *v)
+NodeI *NodeI::accept(DecoratorVisitor *v)
 {
 	return v->visit(this);
 }

@@ -44,9 +44,10 @@ void Engine::setPrevious(NodeI* node)
 {
 	previous = node;
 }
-DecoratorVisitor *Engine::getDecorator()
+DecoratorVisitor *Engine::getVisitor(char c)
 {
-	return &Decorator;
+	VisitorCounter.setMode(c);
+	return &VisitorCounter;
 }
 
 std::stack<NodeI*>& Engine::getStack()

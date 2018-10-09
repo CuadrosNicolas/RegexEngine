@@ -12,20 +12,6 @@ Counter::Counter(NodeI *node, int minimum, int maximum)
 	internNode = node;
 	node->getPred()->setNext(this);
 }
-Counter::Counter(GroupEndNode *node)
-{
-	internNode = node->getPred();
-	node->getPred()->getPred()->link(this);
-	setNext(node);
-}
-Counter::Counter(GroupEndNode *node, int minimum, int maximum)
-{
-	min = minimum;
-	max = maximum;
-	internNode = node->getPred();
-	node->getPred()->getPred()->setNext(this);
-	setNext(node);
-}
 void Counter::setMin(int i)
 {
 	min = i;
@@ -73,8 +59,9 @@ StringIterator Counter::count(StringIterator it, int actual)
 
 	return it;
 }
-NodeI *Counter::accept(DecoratorVisitor *v){
-	 return v->visit(this);
+NodeI *Counter::accept(DecoratorVisitor *v)
+{
+	return v->visit(this);
 };
 Counter *Counter::Star(NodeI *node)
 {

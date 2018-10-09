@@ -7,13 +7,13 @@ EngineState *BuildState::parse(char c)
 	switch (c)
 	{
 	case '*':
-		parentEngine->setPrevious(Counter::Star(parentEngine->getPrevious()));
+		parentEngine->setPrevious(parentEngine->getPrevious()->accept(parentEngine->getVisitor('*')));
 		break;
 	case '?':
-		parentEngine->setPrevious(parentEngine->getPrevious()->accept(parentEngine->getDecorator()));
+		parentEngine->setPrevious(parentEngine->getPrevious()->accept(parentEngine->getVisitor('?')));
 		break;
 	case '+':
-		parentEngine->setPrevious(Counter::Plus(parentEngine->getPrevious()));
+		parentEngine->setPrevious(parentEngine->getPrevious()->accept(parentEngine->getVisitor('+')));
 		break;
 	case '[':
 		return new SetState(parentEngine);

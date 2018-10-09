@@ -10,15 +10,16 @@ class Engine
 		static NodeI* BuildRegex(std::string s);
 		NodeI* getPrevious();
 		void setPrevious(NodeI* node);
-		DecoratorVisitor* getDecorator();
+		DecoratorVisitor *getVisitor(char c);
 		std::stack<NodeI*>& getStack();
 		std::vector<NodeI*>& getTerminal();
 	protected:
 		NodeI* build(std::string s);
 		Engine();
 		NodeI* previous;
-		DecoratorVisitor Decorator;
-	private:
+		DecoratorVisitor VisitorCounter;
+
+	  private:
 		static Engine* globalEngine;
 		GroupBeginNode* RegTree;
 		std::string Reg;

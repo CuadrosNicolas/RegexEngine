@@ -13,6 +13,7 @@ class Match
 		Match* addChild();
 		Match* push();
 		Match *push(int pos);
+		Match* antiPush();
 		void setEnd(size_t i);
 		void setBegin(size_t i);
 		std::string getPrint();

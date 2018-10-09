@@ -30,7 +30,7 @@ StringIterator::StringIterator(const StringIterator& it)
 }
 void StringIterator::init()
 {
-	//matchs = outMatchs->addChild();
+	matchs = outMatchs->addChild();
 }
 StringIterator StringIterator::operator=(const StringIterator& it)
 {
@@ -60,8 +60,13 @@ void StringIterator::reinit()
 	lastPos = pos;
 	if(valid)
 	{
-		matchs = matchs->addChild();
+
+		matchs = outMatchs->addChild();
 		matchs->setBegin(pos);
+	}
+	else
+	{
+		matchs->popLast();
 	}
 	valid = false;
 }
@@ -76,6 +81,10 @@ bool StringIterator::end()
 void StringIterator::clean()
 {
 	outMatchs->popLast();
+}
+void StringIterator::cleanLast()
+{
+	matchs->popLast();
 }
 Match* StringIterator::getMatch()
 {
@@ -97,6 +106,10 @@ void StringIterator::backMatch()
 Match* StringIterator::push()
 {
 	return matchs = matchs->push(pos);
+}
+Match* StringIterator::antiPush()
+{
+	return matchs = matchs->antiPush();
 }
 StringIterator operator-(const StringIterator &it, int i)
 {

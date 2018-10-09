@@ -17,6 +17,7 @@ Match Regex::matchString(std::string s)
 		}
 		it.reinit();
 	}
+
 	it.clean();
 	matchs = *(it.getMatch());
 	return matchs;

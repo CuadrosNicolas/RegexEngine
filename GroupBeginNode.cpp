@@ -17,20 +17,23 @@ NodeI* GroupBeginNode::link(NodeI* next)
 StringIterator GroupBeginNode::in(StringIterator it)
 {
 	StringIterator temp;
-	if(!alreadyPush)
-	{
-		it.push();
+	//if(!alreadyPush)
+
+		StringIterator temp_in = it;
+		temp_in.push();
 		alreadyPush = true;
-	}
-	else
-		it.addChild();
+
+	//else
+
+		//it.addChild();
 	for(NodeI* node : children)
 	{
-		temp = node->in(it);
+		temp = node->in(temp_in);
 		if(temp.isValid())
 		{
 			return temp;
 		}
+
 	}
 	return it;
 }

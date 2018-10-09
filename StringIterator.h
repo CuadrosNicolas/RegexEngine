@@ -19,9 +19,11 @@ class StringIterator
 	size_t pos;
 	int lastPos;
 	void clean();
+	void cleanLast();
 	Match* getMatch();
 	Match* addChild();
 	Match* push();
+	Match* antiPush();
 	void backMatch();
 	friend StringIterator operator-(const StringIterator &it, int i);
 	friend StringIterator operator+(const StringIterator& it,int i);

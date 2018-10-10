@@ -40,6 +40,22 @@ DecoratorVisitor::DecoratorVisitor()
 	 }
 	 return nullptr;
  }
+ NodeI *DecoratorVisitor::visit(BeginGroupCounter *node)
+ {
+	 switch (mode)
+	 {
+	 case '?':
+		 return new GroupLazy(node);
+		 break;
+	 case '*':
+		 throw exceptionCounter();
+		 break;
+	 case '+':
+		 throw exceptionCounter();
+		 break;
+	 }
+	 return nullptr;
+ }
  NodeI *DecoratorVisitor::visit(GroupEndNode *node)
  {
 	 EndGroupCounter* temp_end;

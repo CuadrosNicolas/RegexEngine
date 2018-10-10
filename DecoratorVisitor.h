@@ -23,6 +23,7 @@ class DecoratorVisitor
 	  DecoratorVisitor();
 	  NodeI *visit(NodeI *node);
 	  NodeI *visit(Counter *node);
+	  NodeI *visit(BeginGroupCounter *node);
 	  NodeI *visit(GroupEndNode *node);
 	  void setMode(char c);
 	protected:

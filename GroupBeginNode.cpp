@@ -2,7 +2,7 @@
 
 GroupBeginNode::GroupBeginNode()
 {
-	alreadyPush = false;
+
 }
 NodeI* GroupBeginNode::add(NodeI* next)
 {
@@ -17,15 +17,8 @@ NodeI* GroupBeginNode::link(NodeI* next)
 StringIterator GroupBeginNode::in(StringIterator it)
 {
 	StringIterator temp;
-	//if(!alreadyPush)
-
-		StringIterator temp_in = it;
-		temp_in.push();
-		alreadyPush = true;
-
-	//else
-
-		//it.addChild();
+	StringIterator temp_in = it;
+	temp_in.push();
 	for(NodeI* node : children)
 	{
 		temp = node->in(temp_in);
@@ -48,4 +41,23 @@ void GroupBeginNode::setNext(NodeI *n)
 bool GroupBeginNode::test(char c)
 {
 	return true;
+}
+
+BeginNode::BeginNode() : GroupBeginNode()
+{
+
+}
+StringIterator BeginNode::in(StringIterator it)
+{
+	StringIterator temp;
+	StringIterator temp_in = it;
+	for (NodeI *node : children)
+	{
+		temp = node->in(temp_in);
+		if (temp.isValid())
+		{
+			return temp;
+		}
+	}
+	return it;
 }

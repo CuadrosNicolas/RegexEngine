@@ -16,7 +16,7 @@ Engine::Engine()
 NodeI* Engine::build(std::string s)
 {
 	State = new BuildState(this);
-	RegTree = new GroupBeginNode();
+	RegTree = new BeginNode();
 	previous = this->RegTree;
 	Reg = s;
 	EngineState* temp = nullptr;

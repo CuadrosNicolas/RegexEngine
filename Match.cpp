@@ -92,16 +92,6 @@ Match* Match::push()
 	childs.push_back(temp);
 	return temp;
 }
-Match* Match::antiPush()
-{
-	if(parent!=nullptr)
-	{
-		Match* temp = parent;
-		temp->popLast();
-		return temp;
-	}
-	return this;
-}
 Match *Match::push(int pos)
 {
 	Match *temp = new Match(this);

@@ -83,8 +83,8 @@ int countMatch(Match* matchs)
 - [x] Separate Engine in two class, one for building regex, and one for containing them
 - [x] Capturing group
 - [x] Adding quantifiers  support for groups
-- [ ] Correcting Matchs depth bug
-- [ ] Adding Lazy quantifiers support for groups
+- [x] Correcting Matchs depth bug
+- [x] Adding Lazy quantifiers support for groups
 - [ ] Clean code related to groups
 - [ ] Or '|'
 - [ ] Flags managment

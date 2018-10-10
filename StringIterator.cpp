@@ -66,7 +66,7 @@ void StringIterator::reinit()
 	}
 	else
 	{
-		matchs->popLast();
+			matchs->setBegin(pos);
 	}
 	valid = false;
 }
@@ -106,10 +106,6 @@ void StringIterator::backMatch()
 Match* StringIterator::push()
 {
 	return matchs = matchs->push(pos);
-}
-Match* StringIterator::antiPush()
-{
-	return matchs = matchs->antiPush();
 }
 StringIterator operator-(const StringIterator &it, int i)
 {

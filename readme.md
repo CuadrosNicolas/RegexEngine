@@ -13,9 +13,9 @@ This library allows to use basic regex syntax :
  - Recognize text
  - Using set format like [a-zA-z_]
  - Quantifiers
-	- \*
-	- ?
-	- \+
+	- \* Zero or more
+	- ? Zero or one
+	- \+ One or more
 	- a{0,5}
 	- Lazy quantifier using '?' after any others quantifiers
 - Special character :
@@ -114,8 +114,7 @@ Here is an example :
 	Match matchs = temp.matchString(test);
 	std::cout <<"First match : "<< matchs.getPrint() << std::endl;
 	//Move the regex to his last position in order to continue the parsing.
-	temp.SetPos(temp.getLastPos());
-	matchs = temp.matchString(test);
+	matchs = temp.SetPos(temp.getLastPos()).matchString(test);
 	//Print the result
 	std::cout << "Second match : "<< matchs.getPrint() << std::endl;
 ```

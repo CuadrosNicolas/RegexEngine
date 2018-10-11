@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
 	Match matchs = temp.matchString(test);
 	std::cout <<"First match : "<< matchs.getPrint() << std::endl;
 	//Move the regex to his last position in order to continue the parsing.
-	temp.SetPos(temp.getLastPos());
-	matchs = temp.matchString(test);
+	matchs = temp.SetPos(temp.getLastPos()).matchString(test);
 	//Print the result
 	std::cout << "Second match : "<< matchs.getPrint() << std::endl;
 	int counter = countMatch(&matchs);

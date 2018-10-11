@@ -8,7 +8,7 @@ class Regex
 	public:
 		Regex(std::string s,int F=NONE);
 		Match matchString(std::string s);
-		void SetPos(int i);
+		Regex& SetPos(int i);
 		int getLastPos();
 	private:
 		NodeI* regTree;

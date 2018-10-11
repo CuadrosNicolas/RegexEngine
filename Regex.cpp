@@ -7,9 +7,10 @@ Regex::Regex(std::string s,int F)
 	lastPos = 0;
 	ForcedPos = 0;
 }
-void Regex::SetPos(int i )
+Regex& Regex::SetPos(int i )
  {
 	 ForcedPos = i;
+	 return *this;
  }
  int Regex::getLastPos()
  {

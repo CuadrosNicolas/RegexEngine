@@ -26,13 +26,13 @@ EngineState *BuildState::parse(char c)
 		break;
 	case '^':
 		if(parentEngine->getFlag()&MULTILINE)
-			new AnchorMultiLineLeft(parentEngine->getPrevious());
+			addNode(new AnchorMultiLineLeft());
 		else
 			addNode(new AnchorBeginNode());
 		break;
 	case '$':
 		if(parentEngine->getFlag()&MULTILINE)
-			new AnchorMultiLineRight(parentEngine->getPrevious());
+			addNode(new AnchorMultiLineRight());
 		else
 			addNode(new AnchorEndNode());
 		break;

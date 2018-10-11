@@ -18,14 +18,14 @@ class AnchorEndNode : public NodeI
 class AnchorMultiLineLeft : public NodeI
 {
 	public:
-	  AnchorMultiLineLeft(NodeI* n);
+	  AnchorMultiLineLeft();
 	  bool test(char c);
 	  StringIterator in(StringIterator it);
 };
 class AnchorMultiLineRight : public NodeI
 {
   public:
-	AnchorMultiLineRight(NodeI* n);
+	AnchorMultiLineRight();
 	bool test(char c);
 	StringIterator in(StringIterator it);
 };

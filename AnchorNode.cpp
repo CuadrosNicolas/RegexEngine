@@ -25,11 +25,9 @@ StringIterator AnchorEndNode::in(StringIterator it)
 	}
 	return it;
 }
-AnchorMultiLineLeft::AnchorMultiLineLeft(NodeI* n)
+AnchorMultiLineLeft::AnchorMultiLineLeft()
 {
-	next = n;
-	n->getPred()->setNext(this);
-	n->setPred(this);
+
 }
 bool AnchorMultiLineLeft::test(char c)
 {
@@ -37,17 +35,15 @@ bool AnchorMultiLineLeft::test(char c)
 }
 StringIterator AnchorMultiLineLeft::in(StringIterator it)
 {
-	if (test((it - 1).get())  || (it - 1).end() == true)
+	if (test((it-1).get())  || (it-1).end() == true)
 	{
 		return next->in(it);
 	}
 	return it;
 }
-AnchorMultiLineRight::AnchorMultiLineRight(NodeI* n)
+AnchorMultiLineRight::AnchorMultiLineRight()
 {
-	next = n;
-	n->getPred()->setNext(this);
-	n->setPred(this);
+
 }
 bool AnchorMultiLineRight::test(char c)
 {
@@ -55,9 +51,9 @@ bool AnchorMultiLineRight::test(char c)
 }
 StringIterator AnchorMultiLineRight::in(StringIterator it)
 {
-	if (test((it + 1).get()) || (it + 1).end() == true)
+	if (test(it.get()) || (it).end() == true)
 	{
-		return next->in(it);
+		return next->in(it+1);
 	}
 	return it;
 }

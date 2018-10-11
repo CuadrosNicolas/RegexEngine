@@ -1,6 +1,10 @@
+![](Ressources/Log.png)
 # Introduction
 
-This projet aims to make a small library to build and exploit Regex.
+This project aims to make a small library to build and exploit classical Regex.
+The code is made in order to allow developper to add of new features as easy as possible
+by being construct in oriented object and using classical design pattern (like composite,visitor and state).
+Regex built in this library may not be as optimized as the ones provided by the standard library, but like I said previously, this library was first made to be pedagogical and to allow to add extensions to regex language.
 
 # Features
 
@@ -35,6 +39,8 @@ This library allows to use basic regex syntax :
 
 # Usage
 
+## Getting started
+
 In order to build and try to match a regex, please refer to the following steps :
 
 1. Import the header
@@ -61,6 +67,10 @@ In order to build and try to match a regex, please refer to the following steps 
 
 If you want to get a string representing the match, use the getPrint() method.
 
+## Manipulation
+
+### Iterate through matches
+
 In order to iterate through a match, follow this example which build a function to count the number of matches countain in the result of a regex.
 ```C++
 int countMatch(Match* matchs)
@@ -76,6 +86,38 @@ int countMatch(Match* matchs)
 	}
 	return counter;
 }
+```
+
+### Manipulate a Regex
+
+Regex has 4 options(See the features section for more informations) that can applied when creating them, in order to do use them, refer to this example :
+```C++
+	//Create a regex matching hello world ! without paying attention to the case of the character.
+	Regex temp("Hello World !",GLOBAL_SEARCH|CASE_INSENSITIVE);
+	//Create a string to match
+	std::string test("HeLLo World !\nHello WORLd !");
+	//Try to match the pattern with the string
+	Match matchs = temp.matchString(test);
+	//Print the matches
+	std::cout << matchs.getPrint() << std::endl;
+```
+This example will produces 2 matches.
+
+In this example, the regex pass all over the string to test by using the ``GLOBAL_SEARCH`` flag. By default the regex will stop at the first match it find and so, il will always output the same match if the test is launch again.
+To avoid the regex to always stick at the begining of the string to analyse but without analysing all the string, use the ``STICKY`` flag.
+Here is an example :
+```C++
+	Regex temp("Hello World !",STICKY|CASE_INSENSITIVE);
+	//Create a string to match
+	std::string test("HeLLo World !\nHello WORLd !");
+	//First match a the beginning of the string
+	Match matchs = temp.matchString(test);
+	std::cout <<"First match : "<< matchs.getPrint() << std::endl;
+	//Move the regex to his last position in order to continue the parsing.
+	temp.SetPos(temp.getLastPos());
+	matchs = temp.matchString(test);
+	//Print the result
+	std::cout << "Second match : "<< matchs.getPrint() << std::endl;
 ```
 
 # ToDos
@@ -94,6 +136,13 @@ int countMatch(Match* matchs)
 - [x] Or '|'
 - [x] Adding User quantifiers({a,b}) support
 - [x] Flags managment
-- [ ] non capturing group
-- [ ] positive and negative lookahead
-- [ ] Clean code 
+- [ ] Non capturing group
+- [ ] Positive and negative lookahead
+- [ ] Cleaning code
+- [ ] Add commentaries
+- [ ] Add documentation about regex
+- [ ] Add documentation about the organisation of the code
+
+# Author
+
+[```Cuadros Nicolas```](https://github.com/Inagaroth)

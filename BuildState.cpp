@@ -25,10 +25,16 @@ EngineState *BuildState::parse(char c)
 		return new CounterState(parentEngine, (DecoratorNode *)parentEngine->getPrevious()->accept(parentEngine->getVisitor('*')));
 		break;
 	case '^':
-		addNode(new AnchorBeginNode());
+		if(parentEngine->getFlag()&MULTILINE)
+			new AnchorMultiLineLeft(parentEngine->getPrevious());
+		else
+			addNode(new AnchorBeginNode());
 		break;
 	case '$':
-		addNode(new AnchorEndNode());
+		if(parentEngine->getFlag()&MULTILINE)
+			new AnchorMultiLineRight(parentEngine->getPrevious());
+		else
+			addNode(new AnchorEndNode());
 		break;
 	case '|':
 		parentEngine->getTerminal().back().push_back(parentEngine->getPrevious());
@@ -63,7 +69,7 @@ EngineState *BuildState::parse(char c)
 	default:
 		if (c != '\t' && c != '\n' && c != '\r')
 		{
-			temp = new CharNode(c);
+			temp = getCharNode(c,parentEngine->getFlag());
 			parentEngine->getPrevious()->link(temp);
 			temp->setPred(parentEngine->getPrevious());
 			parentEngine->setPrevious(temp);

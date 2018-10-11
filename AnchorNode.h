@@ -1,6 +1,6 @@
 #pragma once
 #include "NodeI.h"
-
+#include "CharFunction.h"
 class AnchorBeginNode : public NodeI
 {
 	public:
@@ -15,6 +15,20 @@ class AnchorEndNode : public NodeI
 		StringIterator in(StringIterator it);
 };
 
+class AnchorMultiLineLeft : public NodeI
+{
+	public:
+	  AnchorMultiLineLeft(NodeI* n);
+	  bool test(char c);
+	  StringIterator in(StringIterator it);
+};
+class AnchorMultiLineRight : public NodeI
+{
+  public:
+	AnchorMultiLineRight(NodeI* n);
+	bool test(char c);
+	StringIterator in(StringIterator it);
+};
 class AnchorWordBoundariesNode : public NodeI
 {
 	public:

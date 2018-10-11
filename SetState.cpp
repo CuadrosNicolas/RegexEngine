@@ -3,7 +3,7 @@
 SetState::SetState(Engine *e) : EngineState(e)
 {
 	char_temp=-1;
-	temp = new SetNode();
+	temp = getSetNode(e->getFlag());
 	range = false;
 	first = true;
 }

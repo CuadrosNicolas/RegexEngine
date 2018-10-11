@@ -1,5 +1,6 @@
 #pragma once
 #include "NodeI.h"
+#include "CharFunction.h"
 class WordNode : public NodeI
 {
   public:

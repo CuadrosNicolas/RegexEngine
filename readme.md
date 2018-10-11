@@ -27,6 +27,11 @@ This library allows to use basic regex syntax :
 - Group :
 	- Capture group using ('sub regex') , group does not support quantifiers (at this moment)
 - Logical Or : '|'
+- Regex Flags :
+	- STICKY : Allow to set the position of start of the Regex
+	- CASE_INSENSITIVE : The regex will be case insensitive
+	- GLOBAL_SEARCH : The regex will loop through all character of the string to parse.
+	- MULTILINE : Begin and end of string match '\n' in addition of classical beginning and end of string.
 
 # Usage
 
@@ -88,7 +93,7 @@ int countMatch(Match* matchs)
 - [x] Adding Lazy quantifiers support for groups
 - [x] Or '|'
 - [x] Adding User quantifiers({a,b}) support
-- [ ] Flags managment
+- [x] Flags managment
 - [ ] non capturing group
 - [ ] positive and negative lookahead
 - [ ] Clean code 

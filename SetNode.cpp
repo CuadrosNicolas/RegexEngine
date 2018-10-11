@@ -62,3 +62,80 @@ void SetNode::setNot()
 {
 	isNot = true;
 }
+
+SetNodeInsensitive::SetNodeInsensitive()
+{
+}
+
+bool SetNodeInsensitive::test(char c)
+{
+	bool out = false;
+	for (char i : charList)
+	{
+		if (c == i)
+		{
+			out = true;
+			break;
+		}
+		else if(Letter(i))
+		{
+			if(upperCase(i))
+			{
+				if(c==ToUpper(i))
+				{
+					out = true;
+					break;
+				}
+			}
+			else
+			{
+				if(c==ToLower(i))
+				{
+					out = true;
+					break;
+				}
+			}
+		}
+	}
+	if (!out)
+	{
+		for (char *i : setList)
+		{
+			if(Letter(c))
+			{
+				if(upperCase(c))
+				{
+					char temp = ToLower(c);
+					if(temp >= (*i) && temp <=*(i+1))
+					{
+						out = true;
+						break;
+					}
+				}else
+				{
+					char temp = ToUpper(c);
+					if (temp >= (*i) && temp <= *(i + 1))
+					{
+						out = true;
+						break;
+					}
+				}
+			}
+			if (c >= (*i) && c <= *(i + 1))
+			{
+				out = true;
+				break;
+			}
+		}
+	}
+	return out ^ isNot;
+}
+
+SetNode *getSetNode(int f)
+{
+	if(f & CASE_INSENSITIVE)
+	{
+		return new SetNodeInsensitive();
+	}
+	return new SetNode();
+}

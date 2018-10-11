@@ -6,10 +6,15 @@
 class Regex
 {
 	public:
-		Regex(std::string s);
+		Regex(std::string s,int F=NONE);
 		Match matchString(std::string s);
+		void SetPos(int i);
+		int getLastPos();
 	private:
 		NodeI* regTree;
 		Match matchs;
+		int Flag;
+		int lastPos;
+		int ForcedPos;
 
 };

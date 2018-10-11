@@ -17,11 +17,12 @@ int main(int argc, char *argv[])
 {
 	//Build the regex with a pattern to extract word
 	//Here is an example with a pattern matching any word beginning with 'w'
-	Regex temp("B(A){3,5}?");
+	Regex temp("(^Hello World !$)*",GLOBAL_SEARCH|MULTILINE);
 	//Create a string to match
-	std::string test("BAAAABCD");
+	std::string test("Hello World !\nHello World !");
 	//Try to match the pattern with the string
 	Match matchs = temp.matchString(test);
+
 	//Print the matches
 	std::cout << matchs.getPrint() << std::endl;
 	int counter = countMatch(&matchs);

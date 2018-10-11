@@ -2,34 +2,32 @@
 
  bool WordNode::test(char c)
  {
-	 return (c>= 'A' && c<= 'Z') ||
-	 (c>='a' && c<='z') || (c>='0' && c<=9) || c=='_';
+	 return Word(c);
  }
 
  bool NotWordNode::test(char c)
  {
-	 return !((c >= 'A' && c <= 'Z') ||
-			(c >= 'a' && c <= 'z') || (c >= '0' && c <= 9) || c == '_');
+	 return !Word(c);
  }
 
  bool NumberNode::test(char c)
  {
-	 return (c >= '0' && c <= 9);
+	 return Number(c);
  }
 
  bool NotNumberNode::test(char c)
  {
-	 return !(c >= '0' && c <= 9);
+	 return !Number(c);
  }
 
  bool WhiteSpaceNode::test(char c)
  {
-	 return (c == '\t' || c == '\r' || c=='\n');
+	 return WhiteSpace(c);
  }
 
  bool NotWhiteSpaceNode::test(char c)
  {
-	 return !(c == '\t' || c == '\r' || c == '\n');
+	 return !WhiteSpace(c);
  }
 
  bool DotNode::test(char c)

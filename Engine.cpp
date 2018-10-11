@@ -1,12 +1,13 @@
 #include "Engine.h"
 #include "BuildState.h"
 Engine* Engine::globalEngine=nullptr;
-NodeI* Engine::BuildRegex(std::string s)
+NodeI* Engine::BuildRegex(std::string s,int F)
 {
 	if(globalEngine==nullptr)
 	{
 		globalEngine = new Engine();
 	}
+	globalEngine->Flag = F;
 	return globalEngine->build(s);
 }
 Engine::Engine()
@@ -69,4 +70,8 @@ std::stack<NodeI*>& Engine::getStack()
 std::vector<std::vector<NodeI*> >& Engine::getTerminal()
 {
 	return terminalNode;
+}
+int Engine::getFlag()
+{
+	return Flag;
 }

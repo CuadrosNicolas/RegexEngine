@@ -25,12 +25,42 @@ StringIterator AnchorEndNode::in(StringIterator it)
 	}
 	return it;
 }
-
-bool wordTest(char c){
-	return (c >= 'A' && c <= 'Z') ||
-		   (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '_';
+AnchorMultiLineLeft::AnchorMultiLineLeft(NodeI* n)
+{
+	next = n;
+	n->getPred()->setNext(this);
+	n->setPred(this);
 }
-
+bool AnchorMultiLineLeft::test(char c)
+{
+	return c=='\n';
+}
+StringIterator AnchorMultiLineLeft::in(StringIterator it)
+{
+	if (test((it - 1).get())  || (it - 1).end() == true)
+	{
+		return next->in(it);
+	}
+	return it;
+}
+AnchorMultiLineRight::AnchorMultiLineRight(NodeI* n)
+{
+	next = n;
+	n->getPred()->setNext(this);
+	n->setPred(this);
+}
+bool AnchorMultiLineRight::test(char c)
+{
+	return c == '\n';
+}
+StringIterator AnchorMultiLineRight::in(StringIterator it)
+{
+	if (test((it + 1).get()) || (it + 1).end() == true)
+	{
+		return next->in(it);
+	}
+	return it;
+}
 AnchorWordBoundariesNode::AnchorWordBoundariesNode()
 {
 
@@ -40,7 +70,7 @@ bool AnchorWordBoundariesNode::leftBoundaries(StringIterator it)
 {
 	if (!it.end())
 	{
-		return !wordTest(it.get());
+		return !Word(it.get());
 	}
 	return true;
 }
@@ -48,7 +78,7 @@ bool AnchorWordBoundariesNode::rightBoundaries(StringIterator it)
 {
 	if (!it.end())
 	{
-		return wordTest(it.get());
+		return Word(it.get());
 	}
 	return false;
 }
@@ -56,7 +86,7 @@ StringIterator AnchorWordBoundariesNode::in(StringIterator it)
 {
 	if(!it.end())
 	{
-		if(wordTest(it.get()))
+		if (Word(it.get()))
 		{
 			if (leftBoundaries(it-1))
 			{
@@ -89,7 +119,7 @@ StringIterator AnchorNotWordBoundariesNode::in(StringIterator it)
 {
 	if (!it.end())
 	{
-		if (wordTest(it.get()))
+		if (Word(it.get()))
 		{
 			if (leftBoundaries(it - 1))
 			{

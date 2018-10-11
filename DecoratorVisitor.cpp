@@ -8,7 +8,7 @@ DecoratorVisitor::DecoratorVisitor()
 
  }
 
- NodeI *DecoratorVisitor::visit(NodeI *node)
+ DecoratorNode *DecoratorVisitor::visit(NodeI *node)
  {
 	 switch(mode)
 	 {
@@ -24,7 +24,7 @@ DecoratorVisitor::DecoratorVisitor()
 	 }
 	 return nullptr;
  }
- NodeI *DecoratorVisitor::visit(Counter *node)
+ DecoratorNode *DecoratorVisitor::visit(Counter *node)
  {
 	 switch (mode)
 	 {
@@ -40,7 +40,7 @@ DecoratorVisitor::DecoratorVisitor()
 	 }
 	 return nullptr;
  }
- NodeI *DecoratorVisitor::visit(BeginGroupCounter *node)
+ DecoratorNode *DecoratorVisitor::visit(BeginGroupCounter *node)
  {
 	 switch (mode)
 	 {
@@ -56,7 +56,7 @@ DecoratorVisitor::DecoratorVisitor()
 	 }
 	 return nullptr;
  }
- NodeI *DecoratorVisitor::visit(GroupEndNode *node)
+ DecoratorNode *DecoratorVisitor::visit(GroupEndNode *node)
  {
 	 EndGroupCounter* temp_end;
 	 switch (mode)
@@ -72,6 +72,7 @@ DecoratorVisitor::DecoratorVisitor()
 			break;
 	 }
 	BeginGroupCounter *temp_beg = new BeginGroupCounter(temp_end, node->getPred());
+	temp_beg->setPred(node->getPred()->getPred());
 	node->getPred()->getPred()->setNext(temp_beg);
 	node->link(temp_end);
 	return temp_beg;

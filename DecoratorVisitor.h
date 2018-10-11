@@ -21,10 +21,10 @@ class DecoratorVisitor
 {
 	public:
 	  DecoratorVisitor();
-	  NodeI *visit(NodeI *node);
-	  NodeI *visit(Counter *node);
-	  NodeI *visit(BeginGroupCounter *node);
-	  NodeI *visit(GroupEndNode *node);
+	  DecoratorNode *visit(NodeI *node);
+	  DecoratorNode *visit(Counter *node);
+	  DecoratorNode *visit(BeginGroupCounter *node);
+	  DecoratorNode *visit(GroupEndNode *node);
 	  void setMode(char c);
 	protected:
 		char mode;

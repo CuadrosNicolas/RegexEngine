@@ -101,7 +101,15 @@ Match* StringIterator::addChild()
 void StringIterator::backMatch()
 {
 	if(matchs->getParent()!=nullptr)
+	{
+		Match* temp =matchs;
 		matchs = matchs->getParent();
+		if (temp->getBegin() > temp->getEnd())
+		{
+			matchs->popLast();
+		}
+	}
+
 }
 Match* StringIterator::push()
 {

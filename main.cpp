@@ -17,9 +17,9 @@ int main(int argc, char *argv[])
 {
 	//Build the regex with a pattern to extract word
 	//Here is an example with a pattern matching any word beginning with 'w'
-	Regex temp("A*?");
+	Regex temp("B(A){3,5}?");
 	//Create a string to match
-	std::string test("AAAAA");
+	std::string test("BAAAABCD");
 	//Try to match the pattern with the string
 	Match matchs = temp.matchString(test);
 	//Print the matches

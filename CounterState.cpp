@@ -7,9 +7,9 @@ const char *BadCounterNotation::what(){
 	return "Error, a counter contain a bad formed number.";
 }
 
-CounterState::CounterState(Engine *e) : EngineState(e)
+CounterState::CounterState(Engine *e,DecoratorNode* D) : EngineState(e)
 {
-	temp = new Counter(e->getPrevious());
+	temp = D;
 	e->setPrevious(temp);
 	number = "";
 	minSet = false;
@@ -32,6 +32,8 @@ EngineState *CounterState::parse(char c)
 	case '}':
 		if(!minSet)
 		{
+			i = convertToInt();
+			temp->setMin(i);
 			temp->setMax(i);
 			number="";
 		}

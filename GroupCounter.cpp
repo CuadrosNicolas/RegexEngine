@@ -3,19 +3,30 @@
 BeginGroupCounter::BeginGroupCounter(EndGroupCounter *linkEnd, NodeI *sNext)
 {
 	endGrp = linkEnd;
-	linkEnd->bgGrp = this;
-	subNext = sNext;
+	linkEnd->next = this;
+	internNode = sNext;
+}
+void BeginGroupCounter::setMax(int ma)
+{
+	endGrp->max = ma;
+}
+void BeginGroupCounter::setMin(int mi)
+{
+	endGrp->min = mi;
+}
+EndGroupCounter *BeginGroupCounter::getEnd()
+{
+	return endGrp;
 }
 StringIterator BeginGroupCounter::sub_in(StringIterator it)
 {
 	StringIterator temp = it;
-	if (endGrp->counter <= endGrp->max || endGrp->max == -1)
+	if (endGrp->counter < endGrp->max || endGrp->max == -1)
 	{
-		temp = subNext->in(it);
+		temp = internNode->in(it);
 		if (!temp.isValid())
 		{
 			endGrp->counter--;
-			it.cleanLast();
 			return it;
 		}
 		else
@@ -52,7 +63,7 @@ EndGroupCounter::EndGroupCounter(int mi,int ma)
 StringIterator EndGroupCounter::in(StringIterator it)
 {
 	counter++;
-	return bgGrp->in(it);
+	return next->in(it);
 }
 NodeI *BeginGroupCounter::accept(DecoratorVisitor* v)
 {
@@ -61,8 +72,9 @@ NodeI *BeginGroupCounter::accept(DecoratorVisitor* v)
 GroupLazy::GroupLazy(BeginGroupCounter* begGrp)
 {
 	internGrp = begGrp;
+	internGrp->getPred()->setNext(this);
+	internGrp->getEnd()->setNext(this);
 }
-
 StringIterator GroupLazy::in(StringIterator it)
 {
 	StringIterator temp;

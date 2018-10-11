@@ -22,7 +22,7 @@ EngineState *BuildState::parse(char c)
 		return new EscapeState(parentEngine);
 		break;
 	case '{':
-		return new CounterState(parentEngine);
+		return new CounterState(parentEngine, (DecoratorNode *)parentEngine->getPrevious()->accept(parentEngine->getVisitor('*')));
 		break;
 	case '^':
 		addNode(new AnchorBeginNode());
@@ -30,16 +30,29 @@ EngineState *BuildState::parse(char c)
 	case '$':
 		addNode(new AnchorEndNode());
 		break;
+	case '|':
+		parentEngine->getTerminal().back().push_back(parentEngine->getPrevious());
+		parentEngine->setPrevious(parentEngine->getStack().top());
+		break;
 	case '(':
 		temp = new GroupBeginNode();
 		parentEngine->getStack().push(temp);
+		parentEngine->getTerminal().push_back(std::vector<NodeI*>());
 		addNode(temp);
 		break;
 	case ')':
 		temp = new GroupEndNode(parentEngine->getStack().top());
+		NodeI* temp_n;
+		while(!parentEngine->getTerminal().back().empty())
+		{
+			temp_n = parentEngine->getTerminal().back().back();
+			parentEngine->getTerminal().back().pop_back();
+			temp_n->link(temp);
+		}
 		parentEngine->getPrevious()->link(temp);
 		parentEngine->setPrevious(temp);
 		parentEngine->getStack().pop();
+		parentEngine->getTerminal().pop_back();
 		break;
 	case '.':
 		temp = new DotNode();

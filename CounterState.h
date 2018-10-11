@@ -12,12 +12,12 @@ class BadCounterNotation : public std::exception
 class CounterState : public EngineState
 {
   public:
-	CounterState(Engine *e);
+	CounterState(Engine *e,DecoratorNode* D);
 	EngineState *parse(char c);
 	int convertToInt();
   private:
   int i;
   bool minSet;
-	Counter *temp;
+	DecoratorNode *temp;
 	std::string number;
 };

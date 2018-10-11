@@ -1,7 +1,8 @@
 #pragma once
 #include "NodeI.h"
+#include "DecoratorNode.h"
 class EndGroupCounter;
-class BeginGroupCounter : public NodeI
+class BeginGroupCounter : public DecoratorNode
 {
 	friend class EndGroupCounter;
 	public:
@@ -10,10 +11,12 @@ class BeginGroupCounter : public NodeI
 	StringIterator next_in(StringIterator it);
 	StringIterator in(StringIterator it);
 	NodeI *accept(DecoratorVisitor *v);
-
+	EndGroupCounter* getEnd();
+	void setMin(int mi);
+	void setMax(int ma);
   protected:
 	EndGroupCounter *endGrp;
-	NodeI *subNext;
+
 
 };
 
@@ -26,13 +29,12 @@ class EndGroupCounter : public NodeI
 
 
   protected:
-	BeginGroupCounter* bgGrp;
 	int counter;
 	int min;
 	int max;
 };
 
-class GroupLazy : public NodeI
+class GroupLazy : public DecoratorNode
 {
 	public:
 		GroupLazy(BeginGroupCounter* begGrp);

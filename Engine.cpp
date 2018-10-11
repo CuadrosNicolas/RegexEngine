@@ -22,6 +22,7 @@ NodeI* Engine::build(std::string s)
 	EngineState* temp = nullptr;
 	groupStack = std::stack<NodeI*>();
 	terminalNode.clear();
+	terminalNode.push_back(std::vector<NodeI*>());
 	groupStack.push(RegTree);
 	for(char c : Reg)
 	{
@@ -32,7 +33,17 @@ NodeI* Engine::build(std::string s)
 			State = temp;
 		}
 	}
-	previous->link(new EndNode());
+	NodeI* temp_newNode = new EndNode();
+	NodeI *temp_n;
+	while (!terminalNode.back().empty())
+	{
+		temp_n = terminalNode.back().back();
+		temp_n->link(temp_newNode);
+		terminalNode.back().pop_back();
+	}
+	previous->link(temp_newNode);
+	terminalNode.pop_back();
+	previous = temp_newNode;
 	return RegTree;
 }
 
@@ -55,7 +66,7 @@ std::stack<NodeI*>& Engine::getStack()
 	return groupStack;
 }
 
-std::vector<NodeI*>& Engine::getTerminal()
+std::vector<std::vector<NodeI*> >& Engine::getTerminal()
 {
 	return terminalNode;
 }

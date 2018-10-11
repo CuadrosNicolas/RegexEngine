@@ -28,6 +28,7 @@ StringIterator GroupBeginNode::in(StringIterator it)
 		}
 
 	}
+	it.cleanLast();
 	return it;
 }
 void GroupBeginNode::setPred(NodeI *n)
@@ -36,7 +37,7 @@ void GroupBeginNode::setPred(NodeI *n)
 }
 void GroupBeginNode::setNext(NodeI *n)
 {
-	children[0] = n;
+	children.back() = n;
 }
 bool GroupBeginNode::test(char c)
 {

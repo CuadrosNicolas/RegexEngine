@@ -26,6 +26,7 @@ This library allows to use basic regex syntax :
 	- \b \B word boundaries and non word boundaries
 - Group :
 	- Capture group using ('sub regex') , group does not support quantifiers (at this moment)
+- Logical Or : '|'
 
 # Usage
 
@@ -85,8 +86,9 @@ int countMatch(Match* matchs)
 - [x] Adding quantifiers  support for groups
 - [x] Correcting Matchs depth bug
 - [x] Adding Lazy quantifiers support for groups
-- [ ] Clean code related to groups
-- [ ] Or '|'
+- [x] Or '|'
+- [x] Adding User quantifiers({a,b}) support
 - [ ] Flags managment
 - [ ] non capturing group
 - [ ] positive and negative lookahead
+- [ ] Clean code 

@@ -12,14 +12,6 @@ Counter::Counter(NodeI *node, int minimum, int maximum)
 	internNode = node;
 	node->getPred()->setNext(this);
 }
-void Counter::setMin(int i)
-{
-	min = i;
-}
-void Counter::setMax(int i)
-{
-	max = i;
-}
 NodeI* Counter::getPred()
 {
 	return internNode->getPred();

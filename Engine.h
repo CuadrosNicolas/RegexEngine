@@ -12,8 +12,9 @@ class Engine
 		void setPrevious(NodeI* node);
 		DecoratorVisitor *getVisitor(char c);
 		std::stack<NodeI*>& getStack();
-		std::vector<NodeI*>& getTerminal();
-	protected:
+		std::vector<std::vector<NodeI *>> &getTerminal();
+
+	  protected:
 		NodeI* build(std::string s);
 		Engine();
 		NodeI* previous;
@@ -25,5 +26,5 @@ class Engine
 		std::string Reg;
 		EngineState* State;
 		std::stack<NodeI*> groupStack;
-		std::vector<NodeI*> terminalNode;
+		std::vector<std::vector<NodeI*> > terminalNode;
 };

@@ -13,6 +13,10 @@ class NodeI
 	virtual void setPred(NodeI *n);
 	virtual void setNext(NodeI *n);
 	virtual NodeI* accept(DecoratorVisitor *v);
+	virtual NodeI* get()
+	{
+		return this;
+	}
 
 protected:
 	NodeI *pred = nullptr;

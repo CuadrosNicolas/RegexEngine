@@ -8,11 +8,18 @@ class EngineState;
 class Engine
 {
 	public:
+		enum groupType{
+			GROUP,
+			NCGROUP,
+			LKAHGROUP,
+			NEGLKAHGROUP
+		};
 		static NodeI* BuildRegex(std::string s,int F=NONE);
 		NodeI* getPrevious();
 		void setPrevious(NodeI* node);
 		DecoratorVisitor *getVisitor(char c);
 		std::stack<NodeI*>& getStack();
+		std::stack<groupType> &getGroupStack();
 		std::vector<std::vector<NodeI *>> &getTerminal();
 		int getFlag();
 	  protected:
@@ -27,6 +34,7 @@ class Engine
 		std::string Reg;
 		EngineState* State;
 		std::stack<NodeI*> groupStack;
+		std::stack<groupType> groupTypeStack;
 		std::vector<std::vector<NodeI*> > terminalNode;
 		int Flag;
 };

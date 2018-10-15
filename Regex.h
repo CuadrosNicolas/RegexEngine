@@ -7,7 +7,7 @@ class Regex
 {
 	public:
 		Regex(std::string s,int F=NONE);
-		Match matchString(std::string s);
+		Match matchString(const std::string &s);
 		Regex& SetPos(int i);
 		int getLastPos();
 	private:

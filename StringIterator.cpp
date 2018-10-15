@@ -9,9 +9,10 @@ StringIterator::StringIterator()
 	matchs = new Match();
 	outMatchs = matchs;
 }
-StringIterator::StringIterator(std::string *s)
+StringIterator::StringIterator(std::string s)
 {
-	source = s;
+	_source = s;
+	source = &_source;
 	pos = 0;
 	valid = false;
 	lastPos = 0;

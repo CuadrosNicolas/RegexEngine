@@ -5,7 +5,7 @@ class StringIterator
 {
   public:
 	StringIterator();
-	StringIterator(std::string *s);
+	StringIterator(std::string s);
 	StringIterator(const StringIterator& s);
 	StringIterator operator=(const StringIterator& it);
 	void init();
@@ -16,6 +16,7 @@ class StringIterator
 	void reinit();
 	std::string getValue();
 	std::string *source;
+	std::string _source;
 	size_t pos;
 	int lastPos;
 	void clean();

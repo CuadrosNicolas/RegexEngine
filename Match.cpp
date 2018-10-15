@@ -16,6 +16,11 @@ Match::Match(Match* par)
 }
 Match::Match(const Match& m)
 {
+	for (Match *child : childs)
+	{
+		delete child;
+	}
+	childs.clear();
 	begin = m.begin;
 	end = m.end;
 	value = m.value;
@@ -27,6 +32,11 @@ Match::Match(const Match& m)
 }
 Match::Match(const Match *m)
 {
+	for (Match *child : childs)
+	{
+		delete child;
+	}
+	childs.clear();
 	begin = m->begin;
 	end = m->end;
 	value = m->value;
@@ -35,6 +45,40 @@ Match::Match(const Match *m)
 	{
 		childs.push_back(new Match(*child));
 	}
+}
+Match &Match::operator=(const Match &m)
+{
+	for (Match *child : childs)
+	{
+		delete child;
+	}
+	childs.clear();
+	begin = m.begin;
+	end = m.end;
+	value = m.value;
+	parent = m.parent;
+	for (Match *child : m.childs)
+	{
+		childs.push_back(new Match(*child));
+	}
+	return *this;
+}
+Match& Match::operator=(const Match &&m)
+{
+	for (Match *child : childs)
+	{
+		delete child;
+	}
+	childs.clear();
+	begin = m.begin;
+	end = m.end;
+	value = m.value;
+	parent = m.parent;
+	for (Match *child : m.childs)
+	{
+		childs.push_back(new Match(*child));
+	}
+	return *this;
 }
 void Match::setBegin(size_t i)
 {

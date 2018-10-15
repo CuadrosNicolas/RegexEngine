@@ -29,7 +29,10 @@ This library allows to use basic regex syntax :
 	- ^ $ : begin and end of string
 	- \b \B word boundaries and non word boundaries
 - Group :
-	- Capture group using ('sub regex') , group does not support quantifiers (at this moment)
+	- Capture group using ('sub regex')
+	- Non capturing group using (?:'sub regex')
+	- LookAhead group using (?='sub regex')
+	- Negative lookahead using (?!'sub regex')
 - Logical Or : '|'
 - Regex Flags :
 	- STICKY : Allow to set the position of start of the Regex
@@ -135,9 +138,10 @@ Here is an example :
 - [x] Or '|'
 - [x] Adding User quantifiers({a,b}) support
 - [x] Flags managment
-- [ ] Non capturing group
-- [ ] Positive and negative lookahead
+- [x] Non capturing group
+- [x] Positive and negative lookahead
 - [ ] Cleaning code
+- [ ] Add better way to manage matches
 - [ ] Add commentaries
 - [ ] Add documentation about regex
 - [ ] Add documentation about the organisation of the code

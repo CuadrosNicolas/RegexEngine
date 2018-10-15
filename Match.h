@@ -8,7 +8,9 @@ class Match
 		Match(const Match& m);
 		Match(const Match* m);
 		Match(Match* par);
-		~Match();
+		virtual Match &operator=(const Match &m);
+		virtual Match& operator=(const Match&& m);
+		virtual ~Match();
 		Match* getParent();
 		Match* addChild();
 		Match* push();

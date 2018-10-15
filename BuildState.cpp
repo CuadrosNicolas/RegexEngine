@@ -4,6 +4,7 @@ BuildState::BuildState(Engine *e) : EngineState(e)
 }
 EngineState *BuildState::parse(char c)
 {
+
 	switch (c)
 	{
 	case '*':
@@ -22,7 +23,8 @@ EngineState *BuildState::parse(char c)
 		return new EscapeState(parentEngine);
 		break;
 	case '{':
-		return new CounterState(parentEngine, (DecoratorNode *)parentEngine->getPrevious()->accept(parentEngine->getVisitor('*')));
+		temp =parentEngine->getPrevious()->accept(parentEngine->getVisitor('*'));
+		return new CounterState(parentEngine, (DecoratorNode *)temp->get());
 		break;
 	case '^':
 		if(parentEngine->getFlag()&MULTILINE)
@@ -41,15 +43,32 @@ EngineState *BuildState::parse(char c)
 		parentEngine->setPrevious(parentEngine->getStack().top());
 		break;
 	case '(':
-		temp = new GroupBeginNode();
-		parentEngine->getStack().push(temp);
-		parentEngine->getTerminal().push_back(std::vector<NodeI*>());
-		addNode(temp);
+		return new GroupState(parentEngine);
 		break;
 	case ')':
-		temp = new GroupEndNode(parentEngine->getStack().top());
-		NodeI* temp_n;
-		while(!parentEngine->getTerminal().back().empty())
+		switch(parentEngine->getGroupStack().top())
+		{
+			case Engine::groupType::GROUP:
+				temp = new GroupEndNode(parentEngine->getStack().top());
+			break;
+			case Engine::groupType::NCGROUP:
+				temp = new NonCapturingGroupEndNode(parentEngine->getStack().top());
+				break;
+			case Engine::groupType::LKAHGROUP:
+				temp = new GroupEndNode(parentEngine->getStack().top());
+				break;
+			case Engine::groupType::NEGLKAHGROUP:
+				temp = new GroupEndNode(parentEngine->getStack().top());
+				break;
+		}
+		parentEngine->getGroupStack().pop();
+		NodeI *temp_n;
+		NodeI* temp_subEnd;
+		if (parentEngine->getGroupStack().empty() ==false && parentEngine->getGroupStack().top() == Engine::groupType::LKAHGROUP)
+		{
+			temp_subEnd = parentEngine->getStack().top();
+		}
+		while (!parentEngine->getTerminal().back().empty())
 		{
 			temp_n = parentEngine->getTerminal().back().back();
 			parentEngine->getTerminal().back().pop_back();
@@ -59,6 +78,15 @@ EngineState *BuildState::parse(char c)
 		parentEngine->setPrevious(temp);
 		parentEngine->getStack().pop();
 		parentEngine->getTerminal().pop_back();
+		if (parentEngine->getGroupStack().empty() == false && parentEngine->getGroupStack().top() == Engine::groupType::LKAHGROUP)
+		{
+			parentEngine->getGroupStack().pop();
+			temp_n = parentEngine->getStack().top();
+			parentEngine->setPrevious(temp_n);
+			((LookAheadNode*)temp_n)->setEnd(temp);
+			((LookAheadNode *)temp_n)->Valid();
+			parentEngine->getStack().pop();
+		}
 		break;
 	case '.':
 		temp = new DotNode();

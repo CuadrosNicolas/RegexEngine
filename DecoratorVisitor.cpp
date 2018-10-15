@@ -77,3 +77,4 @@ DecoratorVisitor::DecoratorVisitor()
 	node->link(temp_end);
 	return temp_beg;
  }
+

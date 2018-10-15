@@ -7,11 +7,13 @@
 #include "CharNode.h"
 #include "AnchorNode.h"
 #include "GroupEndNode.h"
+#include "GroupState.h"
 class BuildState : public EngineState
 {
   public:
 		BuildState(Engine *e);
 		EngineState *parse(char c);
+
 	private:
 		NodeI* temp;
 };

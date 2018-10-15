@@ -66,7 +66,10 @@ std::stack<NodeI*>& Engine::getStack()
 {
 	return groupStack;
 }
-
+std::stack<Engine::groupType> &Engine::getGroupStack()
+{
+	return groupTypeStack;
+}
 std::vector<std::vector<NodeI*> >& Engine::getTerminal()
 {
 	return terminalNode;

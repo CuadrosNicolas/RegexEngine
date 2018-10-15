@@ -16,9 +16,9 @@ Regex& Regex::SetPos(int i )
  {
 	 return lastPos;
  }
-Match Regex::matchString(std::string s)
+Match Regex::matchString(const std::string  &s)
 {
-	StringIterator it(&s);
+	StringIterator it(s);
 	it.init();
 	if(Flag & STICKY)
 	{

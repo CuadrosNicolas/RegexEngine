@@ -10,7 +10,6 @@ const char *BadCounterNotation::what(){
 CounterState::CounterState(Engine *e,DecoratorNode* D) : EngineState(e)
 {
 	temp = D;
-	e->setPrevious(temp);
 	number = "";
 	minSet = false;
 }

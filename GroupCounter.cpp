@@ -26,7 +26,6 @@ StringIterator BeginGroupCounter::sub_in(StringIterator it)
 		temp = internNode->in(it);
 		if (!temp.isValid())
 		{
-			endGrp->counter--;
 			return it;
 		}
 		else
@@ -63,7 +62,10 @@ EndGroupCounter::EndGroupCounter(int mi,int ma)
 StringIterator EndGroupCounter::in(StringIterator it)
 {
 	counter++;
-	return next->in(it);
+	StringIterator temp = next->in(it);
+	if(!temp.isValid())
+		counter--;
+	return temp;
 }
 NodeI *BeginGroupCounter::accept(DecoratorVisitor* v)
 {

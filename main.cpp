@@ -15,12 +15,12 @@ int countMatch(Match* matchs)
 }
 int main(int argc, char *argv[])
 {
-	Regex temp("A(?=B){2}B",GLOBAL_SEARCH|CASE_INSENSITIVE);
+	Regex temp("(A\\s*)*",GLOBAL_SEARCH|CASE_INSENSITIVE);
 	//Create a string to match
-	std::string test("ABB");
+	std::string test("A A ");
 	//First match a the beginning of the string
 	Match matchs = temp.matchString(test);
-	std::cout <<"First match : "<< matchs.getPrint() << std::endl;
+	std::cout <<"First match : "<<std::endl<< matchs.getPrint() << std::endl;
 	//Move the regex to his last position in order to continue the parsing.
 	matchs = temp.SetPos(temp.getLastPos()).matchString(test);
 	//Print the result

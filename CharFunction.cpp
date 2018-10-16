@@ -22,7 +22,7 @@ bool Number(char c)
 }
 bool WhiteSpace(char c)
 {
-	return (c == '\t' || c == '\r' || c == '\n');
+	return (c == '\t' || c == '\r' || c == '\n' || c==' ');
 }
 char ToLower(char c)
 {

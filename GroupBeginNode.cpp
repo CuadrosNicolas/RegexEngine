@@ -80,7 +80,7 @@ StringIterator LookAheadNode::in(StringIterator it)
 {
 	if(next->in(it).isValid())
 	{
-		return internGroup->in(it);
+		return next_in->in(it);
 	}
 	return it;
 }
@@ -109,7 +109,7 @@ NodeI* LookAheadNode::get()
 }
 NodeI *LookAheadNode::link(NodeI *Next)
 {
-	return internGroup = Next;
+	return next_in = Next;
 }
 NegLookAheadNode::NegLookAheadNode()
 {
@@ -120,7 +120,7 @@ StringIterator NegLookAheadNode::in(StringIterator it)
 {
 	if (!next->in(it).isValid())
 	{
-		return internGroup->in(it);
+		return next_in->in(it);
 	}
 	return it;
 }

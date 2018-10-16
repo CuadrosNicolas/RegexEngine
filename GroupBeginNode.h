@@ -36,7 +36,7 @@ class LookAheadNode : public NodeI
 			void Valid();
 		protected:
 			NodeI* valider;
-			NodeI* internGroup;
+			NodeI* next_in;
 			NodeI* groupLast;
 };
 class NegLookAheadNode : public LookAheadNode

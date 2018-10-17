@@ -15,9 +15,9 @@ int countMatch(Match* matchs)
 }
 int main(int argc, char *argv[])
 {
-	Regex temp("(A\\s*)*",GLOBAL_SEARCH|CASE_INSENSITIVE);
+	Regex temp("(A){3}",GLOBAL_SEARCH|CASE_INSENSITIVE);
 	//Create a string to match
-	std::string test("A A ");
+	std::string test("AA");
 	//First match a the beginning of the string
 	Match matchs = temp.matchString(test);
 	std::cout <<"First match : "<<std::endl<< matchs.getPrint() << std::endl;

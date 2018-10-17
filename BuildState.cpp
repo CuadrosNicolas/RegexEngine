@@ -24,6 +24,7 @@ EngineState *BuildState::parse(char c)
 		break;
 	case '{':
 		temp =parentEngine->getPrevious()->accept(parentEngine->getVisitor('*'));
+		parentEngine->setPrevious (temp);
 		return new CounterState(parentEngine, (DecoratorNode *)temp->get());
 		break;
 	case '^':

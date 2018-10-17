@@ -34,8 +34,8 @@ class AnchorWordBoundariesNode : public NodeI
 	public:
 		AnchorWordBoundariesNode();
 		virtual StringIterator in(StringIterator it);
-		bool leftBoundaries(StringIterator it);
-		bool rightBoundaries(StringIterator it);
+		bool leftBoundaries(StringIterator it) const;
+		bool rightBoundaries(StringIterator it) const;
 };
 
 class AnchorNotWordBoundariesNode : public AnchorWordBoundariesNode

@@ -96,26 +96,26 @@ void Match::setEnd(size_t i)
 		parent->setEnd(i);
 	}
 }
-std::string Match::getValue()
+std::string Match::getValue() const
 {
 	return value;
 }
-size_t Match::getBegin()
+size_t Match::getBegin() const
 {
 	return begin;
 }
-size_t Match::getEnd()
+size_t Match::getEnd() const
 {
 	return end;
 }
-Match* Match::getParent()
+Match *Match::getParent() 
 {
 	if(parent!=nullptr)
 	return parent;
 	else
 	return this;
 }
-std::vector<Match*> Match::getChild()
+std::vector<Match *> Match::getChild() const
 {
 	return childs;
 }
@@ -153,11 +153,11 @@ void Match::popLast()
 {
 		childs.pop_back();
 }
-std::string Match::getPrint()
+std::string Match::getPrint() const
 {
 	return getPrint(-1);
 }
-std::string Match::getPrint(int i)
+std::string Match::getPrint(int i) const
 {
 	std::string s="";
 	if(value!= "")

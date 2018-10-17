@@ -8,8 +8,8 @@ class NodeI
 	virtual bool test(char c);
 	virtual StringIterator in(StringIterator it);
 	virtual NodeI *link(NodeI *Next);
-	NodeI *getPred();
-	NodeI *getNext();
+	virtual NodeI *getPred() const;
+	virtual NodeI *getNext() const;
 	virtual void setPred(NodeI *n);
 	virtual void setNext(NodeI *n);
 	virtual NodeI* accept(DecoratorVisitor *v);

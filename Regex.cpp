@@ -12,7 +12,7 @@ Regex& Regex::SetPos(int i )
 	 ForcedPos = i;
 	 return *this;
  }
- int Regex::getLastPos()
+ int Regex::getLastPos() const
  {
 	 return lastPos;
  }

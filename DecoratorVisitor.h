@@ -1,10 +1,8 @@
 #pragma once
 #include "NodeI.h"
-#include "Counter.h"
-#include "Lazy.h"
 #include "GroupEndNode.h"
-#include "GroupCounter.h"
 #include <exception>
+#include "Counter.h"
 class exceptionCounter : std::exception
 {
 	public:
@@ -23,7 +21,6 @@ class DecoratorVisitor
 	  DecoratorVisitor();
 	  DecoratorNode *visit(NodeI *node);
 	  DecoratorNode *visit(Counter *node);
-	  DecoratorNode *visit(BeginGroupCounter *node);
 	  DecoratorNode *visit(GroupEndNode *node);
 	  void setMode(char c);
 	protected:

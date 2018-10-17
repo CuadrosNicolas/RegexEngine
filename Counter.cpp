@@ -1,69 +1,69 @@
 #include "Counter.h"
 #include "DecoratorVisitor.h"
-Counter::Counter(NodeI* node)
+Counter::Counter(NodeI *sNext, int mi, int ma)
 {
-	internNode = node;
-	node->getPred()->setNext(this);
+	internNode = sNext;
+	min = mi;
+	max = ma;
+	counter = 0;
 }
-Counter::Counter(NodeI *node, int minimum, int maximum)
+void Counter::setMax(int ma)
 {
-	min = minimum;
-	max = maximum;
-	internNode = node;
-	node->getPred()->setNext(this);
+	max = ma;
 }
-NodeI* Counter::getPred()
+void Counter::setMin(int mi)
 {
-	return internNode->getPred();
+	min = mi;
 }
-bool Counter::test(char c)
+void Counter::setEnd(NodeI *n)
 {
-	return true;
+	endGrp = n;
 }
-StringIterator Counter::in(StringIterator it)
+NodeI *Counter::getEnd()
 {
-	return count(it,0);
+	return endGrp;
 }
-StringIterator Counter::intern_in(StringIterator it,int actual)
+StringIterator Counter::sub_in(StringIterator it)
 {
-	if (actual >= min)
+	StringIterator temp = it;
+	if (counter <= max || max == -1)
+	{
+		temp = internNode->in(it);
+		if (!temp.isValid())
+		{
+			return it;
+		}
+		else
+		{
+			return temp;
+		}
+	}
+	return it;
+}
+StringIterator Counter::next_in(StringIterator it)
+{
+	if (counter >= min)
 	{
 		return next->in(it);
 	}
 	return it;
 }
-bool Counter::intern_test(StringIterator it,int actual)
+StringIterator Counter::in(StringIterator it)
 {
-	if ((actual < max || max == -1))
+	StringIterator temp;
+	counter++;
+	temp = sub_in(it);
+	if (temp.isValid())
 	{
-		return internNode->test(it.get());
+		counter--;
+		return temp;
 	}
-	return false;
-}
-StringIterator Counter::count(StringIterator it, int actual)
-{
-	StringIterator temp=it;
-
-		if (it.end()==false && intern_test(it, actual)&&(temp = count(it + 1, actual + 1)).isValid())
-			return temp;
-		else
-			return intern_in(it, actual);
-
-	return it;
+	else
+		counter--;
+	temp = next_in(it);
+	return temp;
 }
 NodeI *Counter::accept(DecoratorVisitor *v)
 {
 	return v->visit(this);
-};
-Counter *Counter::Star(NodeI *node)
-{
-	return new Counter(node,0,-1);
-}
-Counter *Counter::Plus(NodeI *node)
-{
-	return new Counter(node, 1, -1);
-}
-Counter *Counter::interrogation(NodeI *node)
-{
-	return new Counter(node, 0, 1);
 }

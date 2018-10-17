@@ -1,36 +1,42 @@
 #include "Lazy.h"
-
-Lazy::Lazy(Counter *node)
+#include "Counter.h"
+Lazy::Lazy(Counter *begGrp)
 {
-	internNode = node;
-	node->getPred()->setNext(this);
-}
-NodeI *Lazy::link(NodeI *node)
-{
-	return internNode->link(node);
-}
-bool Lazy::test(char c)
-{
-	return true;
-}
-StringIterator Lazy::count(StringIterator it, int actual)
-{
-	StringIterator temp;
-	temp = internNode->intern_in(it, actual);
-	if (temp.isValid())
-		return temp;
-	else if (internNode->intern_test(it, actual))
-	{
-		return count(it + 1, actual + 1);
-	}
-
-	return it;
-}
-NodeI *Lazy::getPred()
-{
-	return internNode->getPred();
+	internGrp = begGrp;
+	internGrp->getPred()->setNext(this);
+	internGrp->getEnd()->setNext(this);
 }
 StringIterator Lazy::in(StringIterator it)
 {
-	return count(it,0);
+
+	StringIterator temp;
+	temp = internGrp->next_in(it);
+	if (temp.isValid())
+		return temp;
+	else
+	{
+		internGrp->counter++;
+		temp = internGrp->sub_in(it);
+		if (temp.isValid())
+		{
+			internGrp->counter--;
+			return temp;
+		}
+		else
+		{
+			internGrp->counter--;
+			return it;
+		}
+	}
+	return it;
+}
+
+NodeI *Lazy::getPred()
+{
+	return internGrp->getPred();
+}
+
+NodeI *Lazy::link(NodeI *node)
+{
+	return internGrp->link(node);
 }

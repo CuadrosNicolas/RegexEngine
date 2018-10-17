@@ -58,9 +58,6 @@ EngineState *BuildState::parse(char c)
 			case Engine::groupType::LKAHGROUP:
 				temp = new GroupEndNode(parentEngine->getStack().top());
 				break;
-			case Engine::groupType::NEGLKAHGROUP:
-				temp = new GroupEndNode(parentEngine->getStack().top());
-				break;
 		}
 		parentEngine->getGroupStack().pop();
 		NodeI *temp_n;

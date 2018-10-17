@@ -13,7 +13,7 @@ bool GroupEndNode::test(char c)
 {
 	return true;
 }
-NodeI* GroupEndNode::getPred()
+NodeI* GroupEndNode::getPred() const
 {
 	return pred;
 }

@@ -62,7 +62,7 @@ AnchorWordBoundariesNode::AnchorWordBoundariesNode()
 
 }
 
-bool AnchorWordBoundariesNode::leftBoundaries(StringIterator it)
+bool AnchorWordBoundariesNode::leftBoundaries(StringIterator it) const
 {
 	if (!it.end())
 	{
@@ -70,7 +70,7 @@ bool AnchorWordBoundariesNode::leftBoundaries(StringIterator it)
 	}
 	return true;
 }
-bool AnchorWordBoundariesNode::rightBoundaries(StringIterator it)
+bool AnchorWordBoundariesNode::rightBoundaries(StringIterator it) const
 {
 	if (!it.end())
 	{

@@ -1,7 +1,6 @@
 #pragma once
 #include "EngineState.h"
 #include "BuildState.h"
-#include "Counter.h"
 #include <exception>
 class BadCounterNotation : public std::exception
 {

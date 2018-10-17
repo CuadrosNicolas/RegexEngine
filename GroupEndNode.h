@@ -6,7 +6,7 @@ class GroupEndNode : public NodeI
 	GroupEndNode(NodeI *previousGroupBegin);
 	  virtual StringIterator in(StringIterator it);
 	  bool test(char c);
-	  virtual NodeI* getPred();
+	  virtual NodeI* getPred() const;
 	  NodeI *accept(DecoratorVisitor *v);
 };
 

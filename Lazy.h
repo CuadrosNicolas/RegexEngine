@@ -1,14 +1,16 @@
 #pragma once
-#include "Counter.h"
+#include "NodeI.h"
+#include "DecoratorNode.h"
+
+class Counter;
 class Lazy : public DecoratorNode
 {
-	public:
-		Lazy(Counter* node);
-		bool test(char c);
-		StringIterator count(StringIterator it,int actual);
-		StringIterator in(StringIterator it);
-		NodeI* link(NodeI* node);
-		NodeI *getPred();
-	  private:
-		Counter* internNode;
+  public:
+	Lazy(Counter *begGrp);
+	StringIterator in(StringIterator it);
+	NodeI *link(NodeI *node);
+	NodeI *getPred();
+
+  protected:
+	Counter *internGrp;
 };

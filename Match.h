@@ -17,15 +17,15 @@ class Match
 		Match *push(int pos);
 		void setEnd(size_t i);
 		void setBegin(size_t i);
-		std::string getPrint();
-		std::string getValue();
-		size_t getBegin();
-		size_t getEnd();
-		std::vector<Match*> getChild();
+		std::string getPrint() const;
+		std::string getValue() const;
+		size_t getBegin() const;
+		size_t getEnd() const;
+		std::vector<Match*> getChild() const;
 		void setValue(std::string* source);
 		void popLast();
 	private:
-	  std::string getPrint(int actual);
+	  std::string getPrint(int actual) const;
 	  size_t begin;
 	  size_t end;
 	  std::string value;

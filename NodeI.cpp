@@ -19,11 +19,11 @@ NodeI *NodeI::link(NodeI *Next)
 {
 	return this->next = Next;
 }
-NodeI *NodeI::getPred()
+NodeI *NodeI::getPred() const
 {
 	return pred;
 }
-NodeI *NodeI::getNext()
+NodeI *NodeI::getNext() const
 {
 	return next;
 }

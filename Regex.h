@@ -9,7 +9,7 @@ class Regex
 		Regex(std::string s,int F=NONE);
 		Match matchString(const std::string &s);
 		Regex& SetPos(int i);
-		int getLastPos();
+		int getLastPos() const;
 	private:
 		NodeI* regTree;
 		Match matchs;

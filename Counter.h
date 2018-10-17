@@ -1,20 +1,27 @@
 #pragma once
+#include "NodeI.h"
 #include "DecoratorNode.h"
-#include "GroupEndNode.h"
+#include "Lazy.h"
+
+
 class Counter : public DecoratorNode
 {
-	public:
-	  Counter(NodeI *node);
-	  Counter(NodeI *node, int minimum, int maximum);
-		bool test(char c);
-	  StringIterator count(StringIterator it, int actual);
-	  StringIterator in(StringIterator it);
-	  StringIterator intern_in(StringIterator it, int actual);
-	  bool intern_test(StringIterator it, int actual);
-	  NodeI *getPred();
-		NodeI *accept(DecoratorVisitor *v);
-		static Counter *Star(NodeI *node);
-	  static Counter *Plus(NodeI *node);
-	  static Counter *interrogation(NodeI *node);
+	friend class Lazy;
 
+  public:
+	Counter(NodeI *sNext, int mi, int ma);
+	StringIterator sub_in(StringIterator it);
+	StringIterator next_in(StringIterator it);
+	StringIterator in(StringIterator it);
+	NodeI *accept(DecoratorVisitor *v);
+	NodeI *getEnd();
+	void setMin(int mi);
+	void setMax(int ma);
+	void setEnd(NodeI *n);
+
+  protected:
+	NodeI *endGrp;
+	int min;
+	int max;
+	int counter;
 };

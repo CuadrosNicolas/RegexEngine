@@ -12,7 +12,6 @@ class Engine
 			GROUP,
 			NCGROUP,
 			LKAHGROUP,
-			NEGLKAHGROUP
 		};
 		static NodeI* BuildRegex(std::string s,int F=NONE);
 		NodeI* getPrevious();

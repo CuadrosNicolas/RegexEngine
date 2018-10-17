@@ -44,6 +44,6 @@ Match Regex::matchString(const std::string  &s)
 	}
 
 	it.clean();
-	matchs = *(it.getMatch());
-	return matchs;
+	//std::cout << it.getMatch()->getPrint() << std::endl;
+	return *(it.getMatch());
 }

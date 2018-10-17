@@ -1,27 +1,33 @@
 #include "GroupCounter.h"
 #include "DecoratorVisitor.h"
-BeginGroupCounter::BeginGroupCounter(EndGroupCounter *linkEnd, NodeI *sNext)
+BeginGroupCounter::BeginGroupCounter(EndGroupCounter *linkEnd, NodeI *sNext,int mi,int ma)
 {
-	endGrp = linkEnd;
-	linkEnd->next = this;
+	//linkEnd->next = this;
 	internNode = sNext;
+	min = mi;
+	max = ma;
+	counter = 0;
 }
 void BeginGroupCounter::setMax(int ma)
 {
-	endGrp->max = ma;
+	max = ma;
 }
 void BeginGroupCounter::setMin(int mi)
 {
-	endGrp->min = mi;
+	min = mi;
 }
-EndGroupCounter *BeginGroupCounter::getEnd()
+void BeginGroupCounter::setEnd(NodeI* n)
+{
+	endGrp = n;
+}
+NodeI *BeginGroupCounter::getEnd()
 {
 	return endGrp;
 }
 StringIterator BeginGroupCounter::sub_in(StringIterator it)
 {
 	StringIterator temp = it;
-	if (endGrp->counter < endGrp->max || endGrp->max == -1)
+	if (counter <= max || max == -1)
 	{
 		temp = internNode->in(it);
 		if (!temp.isValid())
@@ -37,7 +43,7 @@ StringIterator BeginGroupCounter::sub_in(StringIterator it)
 }
 StringIterator BeginGroupCounter::next_in(StringIterator it)
 {
-	if (endGrp->counter >= endGrp->min)
+	if (counter >= min)
 	{
 		return next->in(it);
 	}
@@ -46,10 +52,17 @@ StringIterator BeginGroupCounter::next_in(StringIterator it)
 StringIterator BeginGroupCounter::in(StringIterator it)
 {
 	StringIterator temp;
+	counter++;
 	temp = sub_in(it);
 	if(temp.isValid())
+	{
+		counter--;
 		return temp;
-	return next_in(it);
+	}
+	else
+		counter--;
+	temp = next_in(it);
+	return temp;
 }
 
 EndGroupCounter::EndGroupCounter(int mi,int ma)
@@ -79,11 +92,28 @@ GroupLazy::GroupLazy(BeginGroupCounter* begGrp)
 }
 StringIterator GroupLazy::in(StringIterator it)
 {
+
 	StringIterator temp;
 	temp = internGrp->next_in(it);
 	if (temp.isValid())
 		return temp;
-	return internGrp->sub_in(it);
+	else
+	{
+		internGrp->counter++;
+		temp = internGrp->sub_in(it);
+		if(temp.isValid())
+		{
+			internGrp->counter--;
+			return temp;
+		}
+		else
+		{
+			internGrp->counter--;
+			return it;
+		}
+	}
+	return it;
+
 
 }
 

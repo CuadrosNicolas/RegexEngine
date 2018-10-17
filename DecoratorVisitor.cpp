@@ -59,22 +59,23 @@ DecoratorVisitor::DecoratorVisitor()
  DecoratorNode *DecoratorVisitor::visit(GroupEndNode *node)
  {
 	 EndGroupCounter* temp_end;
-	 switch (mode)
+	 BeginGroupCounter *temp_beg;
+	switch (mode)
 	 {
 		case '?':
-			temp_end = new EndGroupCounter(0,1);
+			temp_beg = new BeginGroupCounter(temp_end, node->getPred(),0,1);
 			break;
 		case '*':
-			temp_end = new EndGroupCounter(0,-1);
+			temp_beg = new BeginGroupCounter(temp_end, node->getPred(),0,-1);
 			break;
 		case '+':
-			temp_end = new EndGroupCounter(1,-1);
+			temp_beg = new BeginGroupCounter(temp_end, node->getPred(),1,-1);
 			break;
 	 }
-	BeginGroupCounter *temp_beg = new BeginGroupCounter(temp_end, node->getPred());
 	temp_beg->setPred(node->getPred()->getPred());
+	temp_beg->setEnd(node);
 	node->getPred()->getPred()->setNext(temp_beg);
-	node->link(temp_end);
+	node->link(temp_beg);
 	return temp_beg;
  }
 

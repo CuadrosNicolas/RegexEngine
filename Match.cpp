@@ -7,12 +7,16 @@ Match::Match()
 	parent = nullptr;
 	value = "";
 }
-Match::Match(Match* par)
+Match::Match(Match* m)
 {
-	begin = 0;
-	end = 0;
-	parent = par;
-	value = "";
+	begin = m->begin;
+	end = m->end;
+	value = m->value;
+	parent = m->parent;
+	for (Match *child : m->childs)
+	{
+		childs.push_back(new Match(child));
+	}
 }
 Match::Match(const Match& m)
 {
@@ -27,7 +31,7 @@ Match::Match(const Match& m)
 	parent = m.parent;
 	for(Match* child : m.childs)
 	{
-		childs.push_back(new Match(*child));
+		childs.push_back(new Match(child));
 	}
 }
 Match::Match(const Match *m)
@@ -43,7 +47,7 @@ Match::Match(const Match *m)
 	parent = m->parent;
 	for (Match *child : m->childs)
 	{
-		childs.push_back(new Match(*child));
+		childs.push_back(new Match(child));
 	}
 }
 Match &Match::operator=(const Match &m)
@@ -119,13 +123,15 @@ Match* Match::addChild()
 {
 	if(parent!=nullptr)
 	{
-		Match* temp = new Match(parent);
+		Match* temp = new Match();
+		temp->parent = parent;
 		parent->childs.push_back(temp);
 		return temp;
 	}
 	else
 	{
-		Match *temp = new Match(this);
+		Match *temp = new Match();
+		temp->parent = this;
 		childs.push_back(temp);
 		return temp;
 	}

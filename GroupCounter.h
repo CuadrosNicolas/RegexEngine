@@ -5,18 +5,23 @@ class EndGroupCounter;
 class BeginGroupCounter : public DecoratorNode
 {
 	friend class EndGroupCounter;
-	public:
-	BeginGroupCounter(EndGroupCounter* linkEnd,NodeI* sNext);
+	friend class GroupLazy;
+
+  public:
+	BeginGroupCounter(EndGroupCounter* linkEnd,NodeI* sNext,int mi,int ma);
 	StringIterator sub_in(StringIterator it);
 	StringIterator next_in(StringIterator it);
 	StringIterator in(StringIterator it);
 	NodeI *accept(DecoratorVisitor *v);
-	EndGroupCounter* getEnd();
+	NodeI* getEnd();
 	void setMin(int mi);
 	void setMax(int ma);
+	void setEnd(NodeI* n);
   protected:
-	EndGroupCounter *endGrp;
-
+	NodeI *endGrp;
+	int min;
+	int max;
+	int counter;
 
 };
 
@@ -37,10 +42,11 @@ class EndGroupCounter : public NodeI
 class GroupLazy : public DecoratorNode
 {
 	public:
-		GroupLazy(BeginGroupCounter* begGrp);
+		GroupLazy(BeginGroupCounter *begGrp);
 		StringIterator in(StringIterator it);
-		NodeI* link(NodeI* node);
-		NodeI* getPred();
-	protected:
-		BeginGroupCounter* internGrp;
+		NodeI *link(NodeI *node);
+		NodeI *getPred();
+
+  protected:
+	BeginGroupCounter *internGrp;
 };

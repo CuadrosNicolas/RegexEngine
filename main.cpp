@@ -13,21 +13,16 @@ int countMatch(Match* matchs)
 	}
 	return counter;
 }
+
 int main(int argc, char *argv[])
 {
-	Regex temp("A{2}?",GLOBAL_SEARCH|CASE_INSENSITIVE);
+	Regex temp("E(AB)+X",GLOBAL_SEARCH|CASE_INSENSITIVE);
 	//Create a string to match
-	std::string test("AAA");
+	std::string test("EABABX");
 	//First match a the beginning of the string
 	//Match matchs = temp.matchString(test);
-	std::cout << "First match : " << std::endl
+	std::cout << "Matches : " << std::endl
 			  << temp.matchString(test).getPrint() << std::endl;
-	//Move the regex to his last position in order to continue the parsing.
-	//matchs = temp.SetPos(temp.getLastPos()).matchString(test);
-	//Print the result
-	//std::cout << "Second match : "<< matchs.getPrint() << std::endl;
-	//int counter = countMatch(&matchs);
-	//std::cout << "Number of matches : " << counter << std::endl;
 	std::cin.get();
 	return 0;
 }

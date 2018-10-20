@@ -3,6 +3,10 @@
 #include "GroupEndNode.h"
 #include <exception>
 #include "Counter.h"
+/**
+ * @brief
+ * Exception throws when a quantifier is applied on an other quantifier
+ */
 class exceptionCounter : std::exception
 {
 	public:
@@ -14,7 +18,10 @@ class exceptionCounter : std::exception
 			return "You can't add a quantifier on a quantifier.";
 		};
 };
-
+/**
+ * @brief
+ * Class that allows to build a counter node around an other in function of his type
+ */
 class DecoratorVisitor
 {
 	public:

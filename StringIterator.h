@@ -1,6 +1,10 @@
 #pragma once
 #include <string>
 #include "Match.h"
+/**
+ * @brief
+ * Class use to iteratre through a string and store matches.
+ */
 class StringIterator
 {
   public:

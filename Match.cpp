@@ -108,7 +108,7 @@ size_t Match::getEnd() const
 {
 	return end;
 }
-Match *Match::getParent() 
+Match *Match::getParent()
 {
 	if(parent!=nullptr)
 	return parent;
@@ -138,13 +138,15 @@ Match* Match::addChild()
 }
 Match* Match::push()
 {
-	Match* temp = new Match(this);
+	Match* temp = new Match();
+	temp->parent = this;
 	childs.push_back(temp);
 	return temp;
 }
 Match *Match::push(int pos)
 {
-	Match *temp = new Match(this);
+	Match *temp = new Match();
+	temp->parent = this;
 	childs.push_back(temp);
 	temp->begin = pos;
 	return temp;

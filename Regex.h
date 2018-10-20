@@ -3,6 +3,10 @@
 #include "NodeI.h"
 #include "Engine.h"
 #include "Match.h"
+/**
+ * @brief
+ * Class use to store a regex and apply it on string
+ */
 class Regex
 {
 	public:

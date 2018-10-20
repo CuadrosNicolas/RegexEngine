@@ -2,6 +2,10 @@
 #include "EngineState.h"
 #include "SetNode.h"
 #include "BuildState.h"
+/**
+ * @brief
+ * State of the regex engine use to read set ([...])
+ */
 class SetState : public EngineState
 {
   public:

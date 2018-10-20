@@ -20,8 +20,12 @@ class EngineState
 		 * @param c Character to parse
 		 * @return EngineState* Next state of the engine
 		 */
+	  	virtual EngineState *parse(char c);
 		void addNode(NodeI* node);
-	  virtual EngineState *parse(char c);
+		/**
+		 * @brief
+		 * Tell the engine to add a node to the current regex tree
+		 */
 	protected:
 		Engine* parentEngine;
 };

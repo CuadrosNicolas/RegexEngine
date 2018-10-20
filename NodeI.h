@@ -2,6 +2,10 @@
 #include "StringIterator.h"
 #include <iostream>
 class DecoratorVisitor;
+/**
+ * @brief
+ * Base clas for all nodes in a regex
+ */
 class NodeI
 {
   public:

@@ -3,6 +3,10 @@
 #include "BuildState.h"
 #include "CharNode.h"
 #include "AssemblyNode.h"
+/**
+ * @brief
+ * State which identify the escaped character such as whitespace or character class like \s or \w for example
+ */
 class EscapeState : public EngineState
 {
   public:

@@ -8,6 +8,10 @@
 #include "AnchorNode.h"
 #include "GroupEndNode.h"
 #include "GroupState.h"
+/**
+ * @brief
+ * Primary state of the Regex engine
+ */
 class BuildState : public EngineState
 {
   public:

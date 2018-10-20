@@ -5,6 +5,11 @@
 #include "RegFlags.h"
 #include <stack>
 class EngineState;
+/**
+ * @brief
+ * Engine that build regex, using the singleton pattern.
+ *
+ */
 class Engine
 {
 	public:

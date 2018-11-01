@@ -3,7 +3,7 @@
 
 This project aims to make a small library to build and exploit classical Regex.
 The code is made in order to allow developper to add of new features as easy as possible
-by being construct in oriented object and using classical design pattern (like composite,visitor and state).
+by being construct in oriented object and using classical design pattern (like composite,visitor).
 Regex built in this library may not be as optimized as the ones provided by the standard library, but like I said previously, this library was first made to be pedagogical and to allow to add extensions to regex language.
 
 # Features

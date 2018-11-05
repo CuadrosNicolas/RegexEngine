@@ -2,10 +2,12 @@
 #include "DecoratorVisitor.h"
 Counter::Counter(NodeI *sNext, int mi, int ma)
 {
+	s_counter = new std::stack<int>();
 	internNode = sNext;
 	min = mi;
 	max = ma;
-	counter = 0;
+	counter =0;
+	s_counter->push(0);
 }
 void Counter::setMax(int ma)
 {
@@ -44,8 +46,12 @@ StringIterator Counter::next_in(StringIterator it)
 {
 	if (counter >= min)
 	{
+		s_counter->push(counter);
+		counter = 0;
 		return next->in(it);
 	}
+	counter = s_counter->top();
+	s_counter->pop();
 	return it;
 }
 StringIterator Counter::in(StringIterator it)

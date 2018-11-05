@@ -16,11 +16,9 @@ int countMatch(Match* matchs)
 
 int main(int argc, char *argv[])
 {
-	Regex temp("E(AB)+X",GLOBAL_SEARCH|CASE_INSENSITIVE);
+	Regex temp("((AB)*B)*", GLOBAL_SEARCH | CASE_INSENSITIVE);
 	//Create a string to match
-	std::string test("EABABX");
-	//First match a the beginning of the string
-	//Match matchs = temp.matchString(test);
+	std::string test("ABABABBB");
 	std::cout << "Matches : " << std::endl
 			  << temp.matchString(test).getPrint() << std::endl;
 	std::cin.get();

@@ -1,4 +1,5 @@
 #pragma once
+#include <stack>
 #include "NodeI.h"
 #include "DecoratorNode.h"
 #include "Lazy.h"
@@ -24,4 +25,5 @@ class Counter : public DecoratorNode
 	int min;
 	int max;
 	int counter;
+	std::stack<int>* s_counter;
 };

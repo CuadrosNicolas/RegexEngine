@@ -1,20 +1,30 @@
 #pragma once
 #include "NodeI.h"
 #include "CharFunction.h"
+/**
+ * @brief
+ * Node to match begin of string
+ */
 class AnchorBeginNode : public NodeI
 {
 	public:
 		AnchorBeginNode();
 		StringIterator in(StringIterator it);
 };
-
+/**
+ * @brief
+ * Node to match end of string
+ */
 class AnchorEndNode : public NodeI
 {
 	public:
 		AnchorEndNode();
 		StringIterator in(StringIterator it);
 };
-
+/**
+ * @brief
+ * Node to match begin of line(line break at left)
+ */
 class AnchorMultiLineLeft : public NodeI
 {
 	public:
@@ -22,6 +32,10 @@ class AnchorMultiLineLeft : public NodeI
 	  bool test(char c);
 	  StringIterator in(StringIterator it);
 };
+/**
+ * @brief
+ * Node to match begin of line(line break at right)
+ */
 class AnchorMultiLineRight : public NodeI
 {
   public:
@@ -29,6 +43,10 @@ class AnchorMultiLineRight : public NodeI
 	bool test(char c);
 	StringIterator in(StringIterator it);
 };
+/**
+ * @brief
+ * Node to match word boundaries
+ */
 class AnchorWordBoundariesNode : public NodeI
 {
 	public:
@@ -37,7 +55,10 @@ class AnchorWordBoundariesNode : public NodeI
 		bool leftBoundaries(StringIterator it) const;
 		bool rightBoundaries(StringIterator it) const;
 };
-
+/**
+ * @brief
+ * Node which doesn't match word boundaries
+ */
 class AnchorNotWordBoundariesNode : public AnchorWordBoundariesNode
 {
 	public:

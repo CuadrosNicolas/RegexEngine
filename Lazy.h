@@ -3,6 +3,10 @@
 #include "DecoratorNode.h"
 
 class Counter;
+/**
+ * @brief
+ * Node which will surrond a counter node to make it behave in lazy mode (match as few as possible)
+ */
 class Lazy : public DecoratorNode
 {
   public:

@@ -3,6 +3,10 @@
 #include "CharFunction.h"
 #include "RegFlags.h"
 #include <vector>
+/**
+ * @brief
+ * Node which will match a set of different character
+ */
 class SetNode : public NodeI
 {
 	public:
@@ -19,7 +23,10 @@ class SetNode : public NodeI
 		std::vector<char*> setList;
 		bool isNot;
 };
-
+/**
+ * @brief
+ * Node which will match a set of different character without paying attention to the case of the character.
+ */
 class SetNodeInsensitive : public SetNode
 {
 	public:

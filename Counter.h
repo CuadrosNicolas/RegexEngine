@@ -4,7 +4,11 @@
 #include "DecoratorNode.h"
 #include "Lazy.h"
 
-
+/**
+ * @brief
+ * Node which need to match a minimum/maximum number of intern node to go
+ * to her next node (quantifier)
+ */
 class Counter : public DecoratorNode
 {
 	friend class Lazy;

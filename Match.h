@@ -7,7 +7,7 @@ class StringIterator;
 /**
  * @brief
  * Class use to store matches of a regex as a tree.
- * 
+ *
  */
 class Match
 {

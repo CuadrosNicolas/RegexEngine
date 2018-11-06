@@ -14,11 +14,14 @@ class Counter : public DecoratorNode
 	friend class Lazy;
 
   public:
+	friend class NodeCopier;
+	Counter(int mi, int ma);
 	Counter(NodeI *sNext, int mi, int ma);
+	~Counter();
 	StringIterator sub_in(StringIterator it);
 	StringIterator next_in(StringIterator it);
 	StringIterator in(StringIterator it);
-	NodeI *accept(DecoratorVisitor *v);
+	NodeI *accept(NodeVisitor *v);
 	NodeI *getEnd();
 	void setMin(int mi);
 	void setMax(int ma);

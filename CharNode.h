@@ -10,14 +10,16 @@
 class CharNode : public NodeI
 {
 	public:
-		CharNode(char c);
-		virtual bool test(char c);
-		StringIterator in(StringIterator it);
-		void setPred(NodeI *n);
-		void setNext(NodeI *n);
+	  friend class NodeCopier;
+	  CharNode(char c);
+	  virtual bool test(char c);
+	  StringIterator in(StringIterator it);
+	  void setPred(NodeI *n);
+	  void setNext(NodeI *n);
+	  virtual NodeI *accept(NodeVisitor *v);
 
-	  protected:
-		char value;
+	protected:
+	  char value;
 };
 /**
  * @brief
@@ -26,8 +28,10 @@ class CharNode : public NodeI
 class CharNodeInsensitive : public CharNode
 {
 public:
-	CharNodeInsensitive(char c);
-	bool test(char c);
+  friend class NodeCopier;
+  CharNodeInsensitive(char c);
+  bool test(char c);
+  virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief Get a char node object matching a character c in insensitive or sensitive mode

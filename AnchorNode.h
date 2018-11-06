@@ -10,6 +10,7 @@ class AnchorBeginNode : public NodeI
 	public:
 		AnchorBeginNode();
 		StringIterator in(StringIterator it);
+		virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -20,6 +21,7 @@ class AnchorEndNode : public NodeI
 	public:
 		AnchorEndNode();
 		StringIterator in(StringIterator it);
+		virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -31,6 +33,7 @@ class AnchorMultiLineLeft : public NodeI
 	  AnchorMultiLineLeft();
 	  bool test(char c);
 	  StringIterator in(StringIterator it);
+	  virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -42,6 +45,7 @@ class AnchorMultiLineRight : public NodeI
 	AnchorMultiLineRight();
 	bool test(char c);
 	StringIterator in(StringIterator it);
+	virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -54,6 +58,7 @@ class AnchorWordBoundariesNode : public NodeI
 		virtual StringIterator in(StringIterator it);
 		bool leftBoundaries(StringIterator it) const;
 		bool rightBoundaries(StringIterator it) const;
+		virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -64,4 +69,5 @@ class AnchorNotWordBoundariesNode : public AnchorWordBoundariesNode
 	public:
 	  AnchorNotWordBoundariesNode();
 	  StringIterator in(StringIterator it);
+	  virtual NodeI *accept(NodeVisitor *v);
 };

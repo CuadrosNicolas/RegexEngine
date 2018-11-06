@@ -7,6 +7,15 @@ Regex::Regex(std::string s,int F)
 	lastPos = 0;
 	ForcedPos = 0;
 }
+Regex::Regex(const Regex &r)
+{
+		NodeCopier copier;
+		regTree = copier.BuildCopy(r.regTree);
+		matchs = r.matchs;
+		Flag = r.Flag;
+		lastPos = r.lastPos;
+		ForcedPos = r.ForcedPos;
+}
 Regex& Regex::SetPos(int i )
  {
 	 ForcedPos = i;

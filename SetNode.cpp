@@ -1,5 +1,5 @@
 #include "SetNode.h"
-
+#include "NodeVisitor.h"
 SetNode::SetNode()
 {
 	isNot=false;
@@ -62,11 +62,17 @@ void SetNode::setNot()
 {
 	isNot = true;
 }
-
+NodeI *SetNode::accept(NodeVisitor *v)
+{
+	return v->visit(this);
+}
 SetNodeInsensitive::SetNodeInsensitive()
 {
 }
-
+NodeI *SetNodeInsensitive::accept(NodeVisitor *v)
+{
+	return v->visit(this);
+}
 bool SetNodeInsensitive::test(char c)
 {
 	bool out = false;

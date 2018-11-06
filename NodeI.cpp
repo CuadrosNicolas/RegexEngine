@@ -1,5 +1,10 @@
 #include "NodeI.h"
 #include "DecoratorVisitor.h"
+NodeI::~NodeI()
+{
+	delete pred;
+	delete next;
+}
 bool NodeI::test(char c)
 {
 	return true;
@@ -33,7 +38,7 @@ void NodeI::setNext(NodeI *n)
 	next = n;
 }
 
-NodeI *NodeI::accept(DecoratorVisitor *v)
+NodeI *NodeI::accept(NodeVisitor *v)
 {
 	return v->visit(this);
 }

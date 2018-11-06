@@ -9,6 +9,7 @@ class WordNode : public NodeI
 {
   public:
 	bool test(char c);
+	virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -18,6 +19,7 @@ class NotWordNode : public NodeI
 {
   public:
 	bool test(char c);
+	virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -27,6 +29,7 @@ class NumberNode : public NodeI
 {
   public:
 	bool test(char c);
+	virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -36,6 +39,7 @@ class NotNumberNode : public NodeI
 {
   public:
 	bool test(char c);
+	virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -45,6 +49,7 @@ class WhiteSpaceNode : public NodeI
 {
   public:
 	bool test(char c);
+	virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -54,6 +59,7 @@ class NotWhiteSpaceNode : public NodeI
 {
   public:
 	bool test(char c);
+	virtual NodeI *accept(NodeVisitor *v);
 };
 /**
  * @brief
@@ -63,4 +69,5 @@ class DotNode : public NodeI
 {
   public:
 	bool test(char c);
+	virtual NodeI *accept(NodeVisitor *v);
 };

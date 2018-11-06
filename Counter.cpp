@@ -1,5 +1,5 @@
 #include "Counter.h"
-#include "DecoratorVisitor.h"
+#include "NodeVisitor.h"
 Counter::Counter(NodeI *sNext, int mi, int ma)
 {
 	s_counter = new std::stack<int>();
@@ -8,6 +8,18 @@ Counter::Counter(NodeI *sNext, int mi, int ma)
 	max = ma;
 	counter =0;
 	s_counter->push(0);
+}
+Counter::Counter( int mi, int ma)
+{
+	s_counter = new std::stack<int>();
+	min = mi;
+	max = ma;
+	counter = 0;
+	s_counter->push(0);
+}
+Counter::~Counter()
+{
+	delete s_counter;
 }
 void Counter::setMax(int ma)
 {
@@ -69,7 +81,7 @@ StringIterator Counter::in(StringIterator it)
 	temp = next_in(it);
 	return temp;
 }
-NodeI *Counter::accept(DecoratorVisitor *v)
+NodeI *Counter::accept(NodeVisitor *v)
 {
 	return v->visit(this);
 }

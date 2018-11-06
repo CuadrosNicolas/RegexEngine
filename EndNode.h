@@ -11,4 +11,5 @@ class EndNode : public NodeI
 		EndNode();
 		bool test(char c);
 		StringIterator in(StringIterator it);
+		virtual NodeI *accept(NodeVisitor *v);
 };

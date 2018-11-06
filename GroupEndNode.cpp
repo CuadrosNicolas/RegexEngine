@@ -1,5 +1,5 @@
 #include "GroupEndNode.h"
-#include "DecoratorVisitor.h"
+#include "NodeVisitor.h"
 GroupEndNode::GroupEndNode(NodeI *previousGroupBegin)
 {
 	pred = previousGroupBegin;
@@ -17,7 +17,7 @@ NodeI* GroupEndNode::getPred() const
 {
 	return pred;
 }
-NodeI *GroupEndNode::accept(DecoratorVisitor *v)
+NodeI *GroupEndNode::accept(NodeVisitor *v)
 {
 	return v->visit(this);
 }
@@ -30,7 +30,7 @@ StringIterator NonCapturingGroupEndNode::in(StringIterator it)
 {
 	return next->in(it);
 }
-NodeI *NonCapturingGroupEndNode::accept(DecoratorVisitor *v)
+NodeI *NonCapturingGroupEndNode::accept(NodeVisitor *v)
 {
 	return v->visit(this);
 }

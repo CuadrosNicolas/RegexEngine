@@ -1,19 +1,22 @@
 #pragma once
 #include "NodeI.h"
+
 class GroupEndNode : public NodeI
 {
 	public:
-	GroupEndNode(NodeI *previousGroupBegin);
+		friend class NodeCopier;
+		GroupEndNode(NodeI *previousGroupBegin);
 	  virtual StringIterator in(StringIterator it);
 	  bool test(char c);
 	  virtual NodeI* getPred() const;
-	  NodeI *accept(DecoratorVisitor *v);
+		NodeI *accept(NodeVisitor *v);
 };
 
 class NonCapturingGroupEndNode : public GroupEndNode
 {
   public:
-	NonCapturingGroupEndNode(NodeI *previousGroupBegin);
-	StringIterator in(StringIterator it);
-	NodeI *accept(DecoratorVisitor *v);
+		friend class NodeCopier;
+		NonCapturingGroupEndNode(NodeI *previousGroupBegin);
+		StringIterator in(StringIterator it);
+		NodeI *accept(NodeVisitor *v);
 };

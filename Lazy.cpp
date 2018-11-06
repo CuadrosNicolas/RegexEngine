@@ -1,10 +1,15 @@
 #include "Lazy.h"
 #include "Counter.h"
+#include "NodeVisitor.h"
 Lazy::Lazy(Counter *begGrp)
 {
 	internGrp = begGrp;
 	internGrp->getPred()->setNext(this);
 	internGrp->getEnd()->setNext(this);
+}
+Lazy::~Lazy()
+{
+	delete internGrp;
 }
 StringIterator Lazy::in(StringIterator it)
 {
@@ -39,4 +44,8 @@ NodeI *Lazy::getPred()
 NodeI *Lazy::link(NodeI *node)
 {
 	return internGrp->link(node);
+}
+NodeI *Lazy::accept(NodeVisitor *v)
+{
+	return v->visit(this);
 }

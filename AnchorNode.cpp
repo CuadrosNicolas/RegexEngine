@@ -1,5 +1,5 @@
 #include "AnchorNode.h"
-
+#include "NodeVisitor.h"
 AnchorBeginNode::AnchorBeginNode()
 {
 
@@ -11,6 +11,11 @@ StringIterator AnchorBeginNode::in(StringIterator it)
 		return this->next->in(it);
 	}
 	return it;
+}
+
+NodeI *AnchorBeginNode::accept(NodeVisitor *v)
+{
+	return v->visit(this);
 }
 
 AnchorEndNode::AnchorEndNode()
@@ -25,6 +30,11 @@ StringIterator AnchorEndNode::in(StringIterator it)
 	}
 	return it;
 }
+NodeI *AnchorEndNode::accept(NodeVisitor *v)
+{
+	return v->visit(this);
+}
+
 AnchorMultiLineLeft::AnchorMultiLineLeft()
 {
 
@@ -40,6 +50,10 @@ StringIterator AnchorMultiLineLeft::in(StringIterator it)
 		return next->in(it);
 	}
 	return it;
+}
+NodeI *AnchorMultiLineLeft::accept(NodeVisitor *v)
+{
+	return v->visit(this);
 }
 AnchorMultiLineRight::AnchorMultiLineRight()
 {
@@ -57,6 +71,10 @@ StringIterator AnchorMultiLineRight::in(StringIterator it)
 	}
 	return it;
 }
+NodeI *AnchorMultiLineRight::accept(NodeVisitor *v)
+{
+	return v->visit(this);
+}
 AnchorWordBoundariesNode::AnchorWordBoundariesNode()
 {
 
@@ -69,6 +87,10 @@ bool AnchorWordBoundariesNode::leftBoundaries(StringIterator it) const
 		return !Word(it.get());
 	}
 	return true;
+}
+NodeI *AnchorWordBoundariesNode::accept(NodeVisitor *v)
+{
+	return v->visit(this);
 }
 bool AnchorWordBoundariesNode::rightBoundaries(StringIterator it) const
 {
@@ -110,6 +132,10 @@ StringIterator AnchorWordBoundariesNode::in(StringIterator it)
 AnchorNotWordBoundariesNode::AnchorNotWordBoundariesNode()
 {
 
+}
+NodeI *AnchorNotWordBoundariesNode::accept(NodeVisitor *v)
+{
+	return v->visit(this);
 }
 StringIterator AnchorNotWordBoundariesNode::in(StringIterator it)
 {

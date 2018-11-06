@@ -10,11 +10,14 @@ class Counter;
 class Lazy : public DecoratorNode
 {
   public:
+  	friend class NodeCopier;
 	Lazy(Counter *begGrp);
+	virtual ~Lazy();
 	StringIterator in(StringIterator it);
 	NodeI *link(NodeI *node);
 	NodeI *getPred();
+	virtual NodeI *accept(NodeVisitor *v);
 
-  protected:
+protected:
 	Counter *internGrp;
 };

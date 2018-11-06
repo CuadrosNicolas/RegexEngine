@@ -1,8 +1,14 @@
 #include "GroupBeginNode.h"
-#include "DecoratorVisitor.h"
+#include "NodeVisitor.h"
+#include "NodeCopier.h"
 GroupBeginNode::GroupBeginNode()
 {
 
+}
+GroupBeginNode::~GroupBeginNode()
+{
+	for(NodeI* n:children)
+		delete n;
 }
 NodeI* GroupBeginNode::add(NodeI* next)
 {
@@ -14,9 +20,9 @@ NodeI* GroupBeginNode::link(NodeI* next)
 	children.push_back(next);
 	return next;
 }
-NodeI* GroupBeginNode::accept(DecoratorVisitor* v)
- {
-	 return v->visit(this);
+NodeI *GroupBeginNode::accept(NodeVisitor *v)
+{
+	return v->visit(this);
  }
 StringIterator GroupBeginNode::in(StringIterator it)
 {
@@ -63,10 +69,9 @@ StringIterator NonCapturingGroupBeginNode::in(StringIterator it)
 			return temp;
 		}
 	}
-	it.cleanLast();
 	return it;
 }
-NodeI *NonCapturingGroupBeginNode::accept(DecoratorVisitor *v)
+NodeI *NonCapturingGroupBeginNode::accept(NodeVisitor *v)
 {
 	return v->visit(this);
 }
@@ -76,19 +81,22 @@ LookAheadNode::LookAheadNode()
 	next = new NonCapturingGroupBeginNode();
 	next->setPred(this);
 }
+LookAheadNode::~LookAheadNode()
+{
+	delete next_in;
+}
 StringIterator LookAheadNode::in(StringIterator it)
 {
-	if(next->in(it).isValid())
+	if(next->in(it).isValid(false))
 	{
 		return next_in->in(it);
 	}
 	return it;
 }
-NodeI *LookAheadNode::accept(DecoratorVisitor *v)
+
+NodeI *LookAheadNode::accept(NodeVisitor *v)
 {
-	groupLast = groupLast->accept(v);
-	groupLast->setNext(valider);
-	return this;
+	return v->visit(this);
 }
 NodeI *LookAheadNode::getIntern()
 {
@@ -101,7 +109,7 @@ void LookAheadNode::setEnd(NodeI *n)
 void LookAheadNode::Valid()
 {
 	valider = new EndNode();
-	groupLast->setNext(valider);
+	groupLast->setNext(new EndNode());
 }
 NodeI* LookAheadNode::get()
 {
@@ -111,16 +119,24 @@ NodeI *LookAheadNode::link(NodeI *Next)
 {
 	return next_in = Next;
 }
-NegLookAheadNode::NegLookAheadNode()
+NegLookAheadNode::NegLookAheadNode() : LookAheadNode()
 {
-	next = new NonCapturingGroupBeginNode();
-	next->setPred(this);
+
+}
+NodeI *NegLookAheadNode::accept(NodeVisitor *v)
+{
+	return v->visit(this);
 }
 StringIterator NegLookAheadNode::in(StringIterator it)
 {
-	if (!next->in(it).isValid())
+	StringIterator temp = it;
+	if ( (next->in(it)).isValid())
 	{
-		return next_in->in(it);
+			return it;
+	}
+	else
+	{
+		return next_in->in(temp);
 	}
 	return it;
 }
@@ -142,7 +158,8 @@ StringIterator BeginNode::in(StringIterator it)
 	}
 	return it;
 }
-NodeI *BeginNode::accept(DecoratorVisitor *v)
+
+NodeI *BeginNode::accept(NodeVisitor *v)
 {
 	return v->visit(this);
 }

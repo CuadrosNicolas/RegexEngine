@@ -44,9 +44,12 @@ StringIterator StringIterator::operator=(const StringIterator& it)
 	outMatchs = it.outMatchs;
 	return *this;
 }
-bool StringIterator::isValid()
+bool StringIterator::isValid(bool testContent)
 {
-	return valid && value!="";
+	if(testContent)
+		return valid && value!="";
+	else
+		return valid;
 }
 StringIterator StringIterator::validPos()
 {

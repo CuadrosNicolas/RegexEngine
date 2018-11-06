@@ -10,6 +10,7 @@
 class SetNode : public NodeI
 {
 	public:
+		friend class NodeCopier;
 		SetNode();
 		virtual bool test(char c);
 		StringIterator in(StringIterator it);
@@ -18,7 +19,9 @@ class SetNode : public NodeI
 		void addChar(char c);
 		void addSet(char a,char b);
 		void setNot();
-	protected:
+		virtual NodeI *accept(NodeVisitor *v);
+
+	  protected:
 		std::vector<char> charList;
 		std::vector<char*> setList;
 		bool isNot;
@@ -30,8 +33,10 @@ class SetNode : public NodeI
 class SetNodeInsensitive : public SetNode
 {
 	public:
-		SetNodeInsensitive();
-		bool test(char c);
+	  friend class NodeCopier;
+	  SetNodeInsensitive();
+	  virtual NodeI *accept(NodeVisitor *v);
+	  bool test(char c);
 };
 
 SetNode* getSetNode(int f);

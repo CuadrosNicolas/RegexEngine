@@ -95,10 +95,7 @@ EngineState *BuildState::parse(char c)
 	default:
 		if (c != '\t' && c != '\n' && c != '\r')
 		{
-			temp = getCharNode(c,parentEngine->getFlag());
-			parentEngine->getPrevious()->link(temp);
-			temp->setPred(parentEngine->getPrevious());
-			parentEngine->setPrevious(temp);
+			return new StrState(parentEngine,c);
 		}
 		break;
 	}

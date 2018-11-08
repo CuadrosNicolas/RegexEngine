@@ -34,6 +34,7 @@ NodeI* Engine::build(std::string s)
 			State = temp;
 		}
 	}
+	State->validate();
 	NodeI* temp_newNode = new EndNode();
 	NodeI *temp_n;
 	while (!terminalNode.back().empty())

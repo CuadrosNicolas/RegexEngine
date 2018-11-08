@@ -26,6 +26,10 @@ class EngineState
 		 * @brief
 		 * Tell the engine to add a node to the current regex tree
 		 */
+		virtual void validate()
+		{
+
+		}
 	protected:
 		Engine* parentEngine;
 };

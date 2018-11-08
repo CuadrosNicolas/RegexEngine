@@ -9,6 +9,7 @@
 #include "Lazy.h"
 #include "SetNode.h"
 #include "CharNode.h"
+#include "StrNode.h"
 
 class NodeVisitor
 {
@@ -30,6 +31,10 @@ class NodeVisitor
 		return nullptr;
 	}
 	virtual NodeI *visit(CharNode *node)
+	{
+		return nullptr;
+	}
+	virtual NodeI *visit(StrNode *node)
 	{
 		return nullptr;
 	}

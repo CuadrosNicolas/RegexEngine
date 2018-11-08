@@ -8,6 +8,7 @@
 #include "AnchorNode.h"
 #include "GroupEndNode.h"
 #include "GroupState.h"
+#include "StrState.h"
 /**
  * @brief
  * Primary state of the Regex engine

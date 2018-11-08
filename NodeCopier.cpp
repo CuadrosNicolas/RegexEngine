@@ -45,6 +45,13 @@ NodeI *NodeCopier::visit(CharNode *node)
 	temp->setNext(node->getNext()->accept(this));
 	return temp;
 }
+NodeI *NodeCopier::visit(StrNode *node)
+{
+	StrNode *temp = new StrNode(node->value);
+	corresponder[node] = temp;
+	temp->setNext(node->getNext()->accept(this));
+	return temp;
+}
 NodeI *NodeCopier::visit(DecoratorNode *node)
 {
 	return nullptr;
@@ -59,6 +66,13 @@ NodeI *NodeCopier::visit(Lazy *node)
 NodeI *NodeCopier::visit(CharNodeInsensitive *node)
 {
 	CharNodeInsensitive *temp = new CharNodeInsensitive(node->value);
+	corresponder[node] = temp;
+	temp->setNext(node->getNext()->accept(this));
+	return temp;
+}
+NodeI *NodeCopier::visit(StrNodeInsensitive *node)
+{
+	StrNodeInsensitive *temp = new StrNodeInsensitive(node->value);
 	corresponder[node] = temp;
 	temp->setNext(node->getNext()->accept(this));
 	return temp;

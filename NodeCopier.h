@@ -10,9 +10,11 @@ class NodeCopier : public NodeVisitor
 		virtual NodeI *visit(Counter *node);
 		virtual NodeI *visit(SetNode *node);
 		virtual NodeI *visit(CharNode *node);
+		virtual NodeI *visit(StrNode *node);
 		virtual NodeI *visit(DecoratorNode *node);
 		virtual NodeI *visit(Lazy *node);
 		virtual NodeI *visit(CharNodeInsensitive *node);
+		virtual NodeI *visit(StrNodeInsensitive *node);
 		virtual NodeI *visit(SetNodeInsensitive *node);
 		virtual NodeI *visit(GroupEndNode *node);
 		virtual NodeI *visit(NonCapturingGroupEndNode *node);

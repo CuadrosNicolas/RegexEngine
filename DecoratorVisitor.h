@@ -24,12 +24,31 @@ class DecoratorVisitor : public NodeVisitor
 {
 	public:
 	  DecoratorVisitor();
-	  NodeI *visit(NodeI *node);
-	  NodeI *visit(Counter *node);
-	  NodeI *visit(GroupEndNode *node);
-	  NodeI *visit(NonCapturingGroupEndNode *node);
-	  NodeI *visit(LookAheadNode *node);
-	  NodeI *visit(NegLookAheadNode *node);
+	  virtual NodeI *visit(NodeI *node);
+	  virtual NodeI *visit(Counter *node);
+	  virtual NodeI *visit(SetNode *node);
+	  virtual NodeI *visit(CharNode *node);
+	  virtual NodeI *visit(StrNode *node);
+	  virtual NodeI *visit(DecoratorNode *node);
+	  virtual NodeI *visit(Lazy *node);
+	  virtual NodeI *visit(CharNodeInsensitive *node);
+	  virtual NodeI *visit(StrNodeInsensitive *node);
+	  virtual NodeI *visit(SetNodeInsensitive *node);
+	  virtual NodeI *visit(GroupEndNode *node);
+	  virtual NodeI *visit(NonCapturingGroupEndNode *node);
+	  virtual NodeI *visit(GroupBeginNode *node);
+	  virtual NodeI *visit(NonCapturingGroupBeginNode *node);
+	  virtual NodeI *visit(LookAheadNode *node);
+	  virtual NodeI *visit(NegLookAheadNode *node);
+	  virtual NodeI *visit(BeginNode *node);
+	  virtual NodeI *visit(EndNode *node);
+	  virtual NodeI *visit(WordNode *node);
+	  virtual NodeI *visit(NotWordNode *node);
+	  virtual NodeI *visit(NumberNode *node);
+	  virtual NodeI *visit(NotNumberNode *node);
+	  virtual NodeI *visit(WhiteSpaceNode *node);
+	  virtual NodeI *visit(NotWhiteSpaceNode *node);
+	  virtual NodeI *visit(DotNode *node);
 
 	  void setMode(char c);
 	protected:

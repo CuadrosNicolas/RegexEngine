@@ -10,6 +10,11 @@ class EngineState;
  * Engine that build regex, using the singleton pattern.
  *
  */
+struct TreeCouple
+{
+	GroupBeginNode* begin;
+	GroupEndNode *end;
+};
 class Engine
 {
 	public:
@@ -19,6 +24,7 @@ class Engine
 			LKAHGROUP,
 		};
 		static NodeI* BuildRegex(std::string s,int F=NONE);
+		static TreeCouple* GenBody(std::string s, int F = NONE);
 		NodeI* getPrevious();
 		void setPrevious(NodeI* node);
 		DecoratorVisitor *getVisitor(char c);
@@ -27,6 +33,7 @@ class Engine
 		std::vector<std::vector<NodeI *>> &getTerminal();
 		int getFlag();
 	  protected:
+		TreeCouple *BuildBody(std::string s);
 		NodeI* build(std::string s);
 		Engine();
 		NodeI* previous;
@@ -34,7 +41,7 @@ class Engine
 
 	  private:
 		static Engine* globalEngine;
-		GroupBeginNode* RegTree;
+		NodeI* RegTree;
 		std::string Reg;
 		EngineState* State;
 		std::stack<NodeI*> groupStack;

@@ -10,7 +10,7 @@ bool NodeI::test(char c)
 	return true;
 }
 StringIterator NodeI::in(StringIterator it) {
-	if (!it.end())
+	if (!it.end() && this->test(it.get()))
 	{
 			return this->next->in(it + 1);
 	}

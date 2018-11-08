@@ -32,7 +32,7 @@ StringIterator GroupBeginNode::in(StringIterator it)
 	for(NodeI* node : children)
 	{
 		temp = node->in(temp_in);
-		if(temp.isValid())
+		if(temp.isValid(false))
 		{
 			return temp;
 		}

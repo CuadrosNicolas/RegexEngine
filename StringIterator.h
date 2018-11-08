@@ -17,6 +17,7 @@ class StringIterator
 	bool end();
 	StringIterator validPos();
 	bool isValid(bool testContent=true);
+	bool unvalid();
 	void reinit();
 	std::string getValue();
 	std::string *source;

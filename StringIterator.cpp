@@ -59,6 +59,10 @@ StringIterator StringIterator::validPos()
 	temp.matchs->setValue(source);
 	return temp;
 }
+bool StringIterator::unvalid()
+{
+	valid = false;
+}
 void StringIterator::reinit()
 {
 	lastPos = pos;

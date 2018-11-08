@@ -7,7 +7,11 @@ GroupEndNode::GroupEndNode(NodeI *previousGroupBegin)
 StringIterator GroupEndNode::in(StringIterator it)
 {
 	it.backMatch();
-	return next->in(it);
+	if(next!=nullptr)
+		return next->in(it);
+	else{
+		return it.validPos();
+	}
 }
 bool GroupEndNode::test(char c)
 {

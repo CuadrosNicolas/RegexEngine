@@ -8,7 +8,82 @@ DecoratorVisitor::DecoratorVisitor()
 
  }
 
-
+ NodeI *DecoratorVisitor::visit(SetNode *node)
+ {
+	 return visit((NodeI*)node);
+ }
+ NodeI *DecoratorVisitor::visit(CharNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(StrNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(DecoratorNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(Lazy *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(CharNodeInsensitive *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(StrNodeInsensitive *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(SetNodeInsensitive *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(GroupBeginNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(NonCapturingGroupBeginNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(BeginNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(EndNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(WordNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(NotWordNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(NumberNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(NotNumberNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(WhiteSpaceNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(NotWhiteSpaceNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
+ NodeI *DecoratorVisitor::visit(DotNode *node)
+ {
+	 return visit((NodeI *)node);
+ }
  NodeI *DecoratorVisitor::visit(NodeI *node)
  {
 	 Counter *temp_beg;
